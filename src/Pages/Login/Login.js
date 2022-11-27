@@ -2,6 +2,7 @@ import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
@@ -24,14 +25,18 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         reset();
+        toast.success("Successfully logged in!");
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 2000);
       })
       .catch((error) => {
         console.error(error);
-        // toast.error(
-        //   error.message === "Firebase: Error (auth/wrong-password)."
-        //     ? "Wrong Password"
-        //     : "User Not Fount"
-        // );
+        toast.error(
+          error.message === "Firebase: Error (auth/wrong-password)."
+            ? "Wrong Password"
+            : "User Not Fount"
+        );
       });
   };
   return (
@@ -73,6 +78,7 @@ const Login = () => {
 
           <Button type="submit">Login</Button>
         </form>
+        <Toaster />
       </div>
     </div>
   );

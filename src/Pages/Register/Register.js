@@ -1,6 +1,7 @@
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Select, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
@@ -33,14 +34,17 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         handleUpdateUserProfile(data.name, data.photoURL);
+        toast.success("Succesfully Signed Up");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((e) => {
-        console.error(e);
-        // toast.error(
-        //   e.message === "Firebase: Error (auth/email-already-in-use)."
-        //     ? "Email already in Use"
-        //     : e.message
-        // );
+        toast.error(
+          e.message === "Firebase: Error (auth/email-already-in-use)."
+            ? "Email already in Use"
+            : e.message
+        );
       });
   };
   return (
@@ -71,6 +75,15 @@ const Register = () => {
               required={true}
               {...register("photoURL")}
             />
+          </div>
+          <div id="select">
+            <div className="mb-2 block">
+              <Label htmlFor="role" value="Want to:" />
+            </div>
+            <Select id="role" required={true} {...register("role")}>
+              <option>Buy</option>
+              <option>Sell</option>
+            </Select>
           </div>
           <div>
             <div className="mb-2 block">
@@ -108,6 +121,7 @@ const Register = () => {
 
           <Button type="submit">Register</Button>
         </form>
+        <Toaster />
       </div>
     </div>
   );
