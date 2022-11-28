@@ -6,10 +6,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  IconButton,
   Modal,
   Tooltip,
   Typography,
 } from "@mui/material";
+import {} from "@mui/material/Icon";
 import { Button } from "flowbite-react";
 
 import React, { useContext } from "react";
@@ -59,8 +61,10 @@ const AdvertiseCard = () => {
             overlap="circular"
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
             badgeContent={
-              <Tooltip title="Verified Seller">
-                <TiTick className="text-white text-base bg-blue-600 rounded-full"></TiTick>
+              <Tooltip title="Verified Seller" placement="top">
+                <IconButton>
+                  <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
+                </IconButton>
               </Tooltip>
             }
             className="-mt-7"
@@ -74,7 +78,12 @@ const AdvertiseCard = () => {
         </div>
         <CardContent className="text-center">
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Lizard{" "}
+            <Tooltip title="Verified Seller" placement="top">
+              <IconButton>
+                <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
+              </IconButton>
+            </Tooltip>
           </Typography>
           <div className="text-center text-gray-500">
             <p className="font-semibold">
@@ -111,6 +120,14 @@ const AdvertiseCard = () => {
           <div className="border-b py-5">
             <BsPerson className="inline text-xl"></BsPerson>
             <p className="font-semibold">Seller Name</p>
+            <p className="">
+              Al-Amin Hossain{" "}
+              <Tooltip title="Verified Seller" placement="top">
+                <IconButton>
+                  <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
+                </IconButton>
+              </Tooltip>
+            </p>
           </div>
         </div>
         <CardActions className="justify-center my-5">
