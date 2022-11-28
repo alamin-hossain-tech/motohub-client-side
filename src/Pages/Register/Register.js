@@ -1,7 +1,10 @@
+import { Divider } from "@mui/material";
+import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
@@ -11,6 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const googleProvider = new GoogleAuthProvider();
 
   const {
     register,
@@ -50,7 +54,7 @@ const Register = () => {
       email: email,
       role: role,
     };
-    fetch("http://localhost:4000/users", {
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -59,11 +63,31 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Succesfully Signed Up");
+        console.log(data);
+        getToken(email);
+      });
+  };
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+      .then((res) => {
+        const user = res.user;
+        saveUser(user.displayName, user.email, "buyer");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
 
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+  const getToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          toast.success("Succesfully Signed Up");
+          localStorage.setItem("moto_token", data.accessToken);
+          setTimeout(() => {
+            navigate(from, { replace: true });
+          }, 2000);
+        }
       });
   };
   return (
@@ -140,6 +164,13 @@ const Register = () => {
 
           <Button type="submit">Register</Button>
         </form>
+        <div className="py-12">
+          <Divider>OR</Divider>
+        </div>
+
+        <Button onClick={handleGoogleLogin} className="mx-auto">
+          <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
+        </Button>
         <Toaster />
       </div>
     </div>

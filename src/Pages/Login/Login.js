@@ -25,7 +25,12 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     providerLogin(googleProvider)
-      .then((res) => {})
+      .then((res) => {
+        toast.success("Successfully logged in!");
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 1000);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -38,7 +43,7 @@ const Login = () => {
         toast.success("Successfully logged in!");
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         console.error(error);

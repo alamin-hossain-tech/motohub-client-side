@@ -50,7 +50,7 @@ const AddProduct = () => {
             published_time: new Date(),
           };
           console.log(product);
-          fetch("http://localhost:4000/add-product", {
+          fetch("http://localhost:5000/add-product", {
             method: "POST",
             headers: {
               "content-type": "application/json",

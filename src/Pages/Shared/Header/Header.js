@@ -38,11 +38,8 @@ const Header = () => {
               inline={true}
               label={
                 <Avatar
-                  alt="User settings"
-                  img={
-                    user?.photoURL ||
-                    "https://i.ibb.co/bBf5GbL/sergio-de-paula-c-Gmwf-HBDzk-unsplash.jpg"
-                  }
+                  alt=""
+                  img={user?.photoURL}
                   rounded={true}
                   // bordered={true}
                 />
