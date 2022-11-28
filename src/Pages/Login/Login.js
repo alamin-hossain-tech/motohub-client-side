@@ -1,8 +1,12 @@
+import { Google } from "@mui/icons-material";
+import { Divider, Icon } from "@mui/material";
+import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
@@ -10,6 +14,7 @@ const Login = () => {
   const { signIn, setLoading, providerLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const googleProvider = new GoogleAuthProvider();
   const from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -17,7 +22,12 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
-  console.log(errors);
+
+  const handleGoogleLogin = () => {
+    providerLogin(googleProvider)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -78,6 +88,14 @@ const Login = () => {
 
           <Button type="submit">Login</Button>
         </form>
+        <div className="py-12">
+          <Divider>OR</Divider>
+        </div>
+
+        <Button onClick={handleGoogleLogin} className="mx-auto">
+          <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
+        </Button>
+
         <Toaster />
       </div>
     </div>

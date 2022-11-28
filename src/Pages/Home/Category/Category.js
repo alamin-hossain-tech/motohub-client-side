@@ -9,22 +9,22 @@ const Category = () => {
       <p className=" font-bold text-center "> Choose wisely</p>
       <HeadingDivider></HeadingDivider>
       <div className="grid grid-cols-4 gap-12 ">
-        <Link>
+        <Link to="/category/1">
           <div className=" shadow hover:shadow-lg hover:cursor-pointer h-72 flex items-center justify-center p-12">
             <img src="https://i.ibb.co/m8m1nM1/toyota.png" alt="" />
           </div>
         </Link>
-        <Link>
+        <Link to="/category/2">
           <div className=" shadow hover:shadow-lg hover:cursor-pointer h-72 flex items-center justify-center p-12">
             <img src="https://i.ibb.co/0qFD1ch/Asset-2.png" alt="" />
           </div>
         </Link>
-        <Link>
+        <Link to="/category/3">
           <div className=" shadow hover:shadow-lg hover:cursor-pointer h-72 flex items-center justify-center p-12">
             <img src="https://i.ibb.co/bJWhWbt/Asset-2-8.png" alt="" />
           </div>
         </Link>
-        <Link>
+        <Link to="/category/4">
           <div className=" shadow hover:shadow-lg hover:cursor-pointer h-72 flex items-center justify-center p-12">
             <img src="https://i.ibb.co/HG1fXdq/nissan-6.png" alt="" />
           </div>

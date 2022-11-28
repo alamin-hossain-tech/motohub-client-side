@@ -34,10 +34,7 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         handleUpdateUserProfile(data.name, data.photoURL);
-        toast.success("Succesfully Signed Up");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        saveUser(data.name, data.email, data.role);
       })
       .catch((e) => {
         toast.error(
@@ -45,6 +42,28 @@ const Register = () => {
             ? "Email already in Use"
             : e.message
         );
+      });
+  };
+  const saveUser = (name, email, role) => {
+    const user = {
+      name: name,
+      email: email,
+      role: role,
+    };
+    fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Succesfully Signed Up");
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       });
   };
   return (
@@ -81,8 +100,8 @@ const Register = () => {
               <Label htmlFor="role" value="Want to:" />
             </div>
             <Select id="role" required={true} {...register("role")}>
-              <option>Buy</option>
-              <option>Sell</option>
+              <option value={"buyer"}>Buy</option>
+              <option value={"seller"}>Sell</option>
             </Select>
           </div>
           <div>

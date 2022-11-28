@@ -5,12 +5,13 @@ import { BsShop } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
 import FooterMain from "../../Pages/Shared/FooterMain/FooterMain";
 import Header from "../../Pages/Shared/Header/Header";
+import { AiOutlineCar } from "react-icons/ai";
 
 const Dashboard = () => {
   return (
     <div>
       <Header></Header>
-      <div className="flex">
+      <div className="flex container mx-auto h-screen">
         <Sidebar>
           <React.Fragment key=".0">
             <Sidebar.Items>
@@ -39,6 +40,18 @@ const Dashboard = () => {
                     labelColor="gray"
                   >
                     All Sellers
+                  </Sidebar.Item>
+                </Link>
+                <Link to="/dashboard/add-product">
+                  <Sidebar.Item
+                    href="#"
+                    icon={function noRefCheck() {
+                      return <AiOutlineCar className="inline"></AiOutlineCar>;
+                    }}
+                    label="Pro"
+                    labelColor="gray"
+                  >
+                    Add Product
                   </Sidebar.Item>
                 </Link>
               </Sidebar.ItemGroup>
