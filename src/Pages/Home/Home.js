@@ -6,6 +6,7 @@ import Advertise from "./Advertise/Advertise";
 import Category from "./Category/Category";
 import Banner from "./Banner/Banner";
 import { Divider } from "@mui/material";
+import Service from "./Service/Service";
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
       <Advertise></Advertise>
       <Category></Category>
       <Banner></Banner>
-      <Divider style={{ margin: "60px 0px" }} />
+      <Service></Service>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Banner = () => {
           }}
         >
           <h2 className="text-2xl font-bold">Are You Looking for a Cars?</h2>
-          <p className="text-lg font-bold text-white">
+          <p className="text-lg font-bold text-red-500">
             Search From numerious cars
           </p>
         </div>
@@ -28,7 +28,9 @@ const Banner = () => {
           <h2 className="text-2xl font-bold text-white">
             Do you want to sell car?
           </h2>
-          <p className="text-lg font-bold text-white">Give a sell post today</p>
+          <p className="text-lg font-bold text-blue-500">
+            Give a sell post today
+          </p>
         </div>
       </div>
     </div>
