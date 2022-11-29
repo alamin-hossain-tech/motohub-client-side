@@ -2,6 +2,7 @@ import {
   Button,
   FileInput,
   Label,
+  Radio,
   Select,
   Spinner,
   TextInput,
@@ -10,11 +11,13 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useRole from "../../../Hooks/useRole";
 
 const AddProduct = () => {
   const imghostkey = process.env.REACT_APP_imgbb;
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [role] = useRole(user.email);
 
   const {
     register,
@@ -36,9 +39,9 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((imageData) => {
         if (imageData.success) {
-          console.log(imageData.data.url);
           const product = {
             name: data.name,
+            product_image: imageData.data.url,
             model_year: data.model_year,
             reg_year: data.reg_year,
             buy_price: data.buy_price,
@@ -48,6 +51,10 @@ const AddProduct = () => {
             seller_image: user.photoURL,
             category: data.category,
             published_time: new Date(),
+            condition: data.condition,
+            seller_contact: data.phone,
+            seller_location: data.location,
+            status: "Available",
           };
           console.log(product);
           fetch("http://localhost:5000/add-product", {
@@ -72,99 +79,149 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="w-96 mx-auto">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Product Name" />
-          </div>
-          <TextInput
-            required={true}
-            id="small"
-            type="text"
-            sizing="md"
-            {...register("name")}
-          />
-        </div>
-        <div id="fileUpload">
-          <div className="mb-2 block">
-            <Label htmlFor="file" value="Add Product Image" />
-          </div>
-          <FileInput id="file" {...register("image")} />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Model Year" />
-          </div>
-          <TextInput
-            required={true}
-            id="small"
-            type="number"
-            sizing="md"
-            {...register("model_year")}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Registration Year" />
-          </div>
-          <TextInput
-            required={true}
-            id="small"
-            type="number"
-            sizing="md"
-            {...register("reg_year")}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Buying Price ($)" />
-          </div>
-          <TextInput
-            required={true}
-            id="small"
-            type="number"
-            sizing="md"
-            {...register("buy_price")}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Selling Price ($)" />
-          </div>
-          <TextInput
-            required={true}
-            id="small"
-            type="number"
-            sizing="md"
-            {...register("sell_price")}
-          />
-        </div>
+    <div>
+      {role.role === "seller" ? (
+        <div className="px-8 mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Product Name" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="small"
+                  type="text"
+                  sizing="md"
+                  {...register("name")}
+                />
+              </div>
+              <div id="fileUpload" className="py-3">
+                <div className="mb-2 block">
+                  <Label htmlFor="file" value="Add Product Image" />
+                </div>
+                <FileInput id="file" {...register("image")} />
+              </div>
+              <div id="brand">
+                <div className="mb-2 block">
+                  <Label htmlFor="brand" value="Select your brand" />
+                </div>
+                <Select id="brand" required={true} {...register("category")}>
+                  <option value={1} defaultChecked>
+                    Toyota
+                  </option>
+                  <option value={2}>Honda</option>
+                  <option value={3}>Hyundai</option>
+                  <option value={4}>Nissan</option>
+                </Select>
+              </div>
 
-        <div id="select">
-          <div className="mb-2 block">
-            <Label htmlFor="countries" value="Select your brand" />
-          </div>
-          <Select id="countries" required={true} {...register("category")}>
-            <option value={1} defaultChecked>
-              Toyota
-            </option>
-            <option value={2}>Honda</option>
-            <option value={3}>Hyundai</option>
-            <option value={4}>Nissan</option>
-          </Select>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="condition" value="Select Product Condtion" />
+                </div>
+                <Select
+                  id="condition"
+                  required={true}
+                  {...register("condition")}
+                >
+                  <option defaultChecked>Excellent</option>
+                  <option>Good</option>
+                  <option>Fair</option>
+                </Select>
+              </div>
+
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Model Year" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="small"
+                  type="number"
+                  sizing="md"
+                  {...register("model_year")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Registration Year" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="small"
+                  type="number"
+                  sizing="md"
+                  {...register("reg_year")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Buying Price ($)" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="small"
+                  type="number"
+                  sizing="md"
+                  {...register("buy_price")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="small" value="Selling Price ($)" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="small"
+                  type="number"
+                  sizing="md"
+                  {...register("sell_price")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="mobile" value="Contact Number" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="mobile"
+                  type="number"
+                  sizing="md"
+                  {...register("phone")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="location" value="Location" />
+                </div>
+                <TextInput
+                  required={true}
+                  id="location"
+                  type="text"
+                  sizing="md"
+                  {...register("location")}
+                />
+              </div>
+            </div>
+
+            {isLoading && (
+              <Spinner
+                aria-label="Center-aligned spinner example"
+                className="my-4"
+              />
+            )}
+            <Button className="my-4" type="submit">
+              Add
+            </Button>
+          </form>
+          <Toaster />
         </div>
-        {isLoading && (
-          <Spinner
-            aria-label="Center-aligned spinner example"
-            className="my-4"
-          />
-        )}
-        <Button className="my-4" type="submit">
-          Add
-        </Button>
-      </form>
-      <Toaster />
+      ) : (
+        <div className="h-screen flex items-center justify-center">
+          <Spinner aria-label="Center-aligned spinner example" />
+        </div>
+      )}
     </div>
   );
 };

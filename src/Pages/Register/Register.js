@@ -48,6 +48,7 @@ const Register = () => {
       .then((result) => {
         handleUpdateUserProfile(data.name, data.photoURL);
         saveUser(data.name, data.email, data.role);
+        toast.success("Succesfully Signed Up");
       })
       .catch((e) => {
         toast.error(
@@ -72,9 +73,12 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCreatedEmail(email);
-        toast.success("Succesfully Signed Up");
+        location.reload();
+
+        setTimeout(() => {
+          navigate();
+        }, 1000);
       });
   };
   const handleGoogleLogin = () => {

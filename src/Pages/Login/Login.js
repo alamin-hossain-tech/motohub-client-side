@@ -40,7 +40,7 @@ const Login = () => {
         setCreatedEmail(user.email);
         saveUser(user.displayName, user.email, "buyer");
         toast.success("Succesfully Logged in");
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -61,7 +61,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         setCreatedEmail(email);
-        location.reload();
+        // location.reload();
       });
   };
 
@@ -70,9 +70,11 @@ const Login = () => {
     signIn(data.email, data.password)
       .then((res) => {
         setCreatedEmail(res.user.email);
+        saveUser(res.user.displayName, res.user.email, "buyer");
         setLoading(false);
         reset();
         toast.success("Successfully logged in!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

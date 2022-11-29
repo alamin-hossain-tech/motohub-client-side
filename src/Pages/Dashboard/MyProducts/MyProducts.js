@@ -1,40 +1,56 @@
 import { useQuery } from "@tanstack/react-query";
-import { Spinner } from "flowbite-react";
-import React, { useContext, useEffect } from "react";
+import { Avatar, Button, Spinner } from "flowbite-react";
+import React, { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaLock } from "react-icons/fa";
-import { GoVerified } from "react-icons/go";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
-import "./AllSeller.css";
 
-const AllSeller = () => {
-  const { setSeller, user } = useContext(AuthContext);
+const MyProducts = () => {
+  const { user, setBuyer } = useContext(AuthContext);
   const [role] = useRole(user.email);
   const {
     data = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["users?role=seller"],
+    queryKey: ["products"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=seller`).then((res) =>
+      fetch(`http://localhost:5000/products/${user.email}`).then((res) =>
         res.json()
       ),
   });
-  useEffect(() => {
-    if (data) {
-      setSeller(data);
-    }
-  });
+
+  const getTime = (time) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dataTime = new Date(time);
+    let month = months[dataTime.getMonth()];
+    const year = dataTime.getFullYear();
+    const day = dataTime.getDate();
+    const date = day + ", " + month + " " + year;
+    return date;
+
+    // return readabletime;
+  };
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
-      fetch(`http://localhost:5000/users/delete/${id}`, {
+      fetch(`http://localhost:5000/product/delete/${id}`, {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
         },
-        body: JSON.stringify(id),
       })
         .then((res) => {
           toast.success("Deleted");
@@ -42,64 +58,60 @@ const AllSeller = () => {
         })
         .catch((err) => console.error(err));
     }
+    console.log(id);
   };
-  const handleVerify = (id) => {
-    fetch(`http://localhost:5000/users/edit/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "aplication/json",
-        verify: "true",
-      },
-    })
-      .then((res) => {
-        toast.success("Verified");
-        refetch();
-      })
-      .catch((err) => console.error(err));
-  };
-  const handleUnVerify = (id) => {
-    if (window.confirm("Are you sure want to Unverify?")) {
-      fetch(`http://localhost:5000/edit/${id}`, {
+  const handleAdvertise = (id) => {
+    if (window.confirm("Are you sure want to Advertise?")) {
+      fetch(`http://localhost:5000/product/edit/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "aplication/json",
-          verify: "false",
         },
       })
         .then((res) => {
-          toast.error("Unverified");
+          toast.success("Updated");
           refetch();
         })
         .catch((err) => console.error(err));
     }
+    console.log(id);
   };
+
   return (
     <div>
-      {role.role === "admin" ? (
-        <div className="">
+      {role.role === "seller" ? (
+        <div>
           <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
-            All Sellers
+            My Products
           </h2>
           <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead class="text-white">
-              {data.map((u, i) => (
+              {data.map((p, i) => (
                 <tr
                   key={i}
                   class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0"
                 >
                   <th class="p-3 text-left border-grey-light border">Sl</th>
                   <th class="p-3 text-left border-grey-light border">Name</th>
-                  <th class="p-3 text-left border-grey-light border">Email</th>
-                  <th class="p-3 text-left border-grey-light border">Role</th>
-                  <th class="p-3 text-left border-grey-light border">Verify</th>
+                  <th class="p-3 text-left border-grey-light border">Price</th>
+                  <th class="p-3 text-left border-grey-light border">Status</th>
                   <th class="p-3 text-left border-grey-light border">
+                    Published
+                  </th>
+                  <th class="p-3 text-left border-grey-light border">
+                    Advertise
+                  </th>
+                  <th
+                    class="p-3 text-left border-grey-light border"
+                    width="110px"
+                  >
                     Actions
                   </th>
                 </tr>
               ))}
             </thead>
             <tbody class="flex-1 sm:flex-none">
-              {data.map((user, i) => (
+              {data.map((product, i) => (
                 <tr
                   key={i}
                   class="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"
@@ -108,28 +120,38 @@ const AllSeller = () => {
                     {i + 1}
                   </td>
                   <td class="border-grey-light border hover:bg-gray-100 p-3">
-                    {user.name}
+                    <img
+                      className="inline mr-2 rounded"
+                      src={product.product_image}
+                      alt=""
+                      width={"50px"}
+                    />
+                    {product.name}
                   </td>
                   <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    {user.email}
+                    ${product.sell_price}
                   </td>
                   <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    {user.role}
+                    {product.status}
                   </td>
-
-                  <td class="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer">
-                    {user.verify !== "true" && (
-                      <span onClick={() => handleVerify(user._id)}>Verify</span>
-                    )}
-                    {user.verify === "true" && (
-                      <GoVerified
-                        onClick={() => handleUnVerify(user._id)}
-                      ></GoVerified>
+                  <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                    {getTime(product.published_time)}
+                  </td>
+                  <td class="border-grey-light border hover:bg-gray-100 p-3 cursor-pointer">
+                    {product.advertise === "true" ? (
+                      <p className="font-semibold text-green-500">Advertised</p>
+                    ) : (
+                      <Button
+                        onClick={() => handleAdvertise(product._id)}
+                        className="mx-auto"
+                      >
+                        Advertise
+                      </Button>
                     )}
                   </td>
                   <td
+                    onClick={() => handleDelete(product._id)}
                     class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer"
-                    onClick={() => handleDelete(user._id)}
                   >
                     Delete
                   </td>
@@ -148,4 +170,4 @@ const AllSeller = () => {
   );
 };
 
-export default AllSeller;
+export default MyProducts;
