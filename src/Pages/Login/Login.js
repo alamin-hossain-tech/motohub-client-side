@@ -60,9 +60,8 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCreatedEmail(email);
-        toast.success("Succesfully Signed Up");
+        location.reload();
       });
   };
 

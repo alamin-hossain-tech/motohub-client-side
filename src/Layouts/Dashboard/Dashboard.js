@@ -1,5 +1,5 @@
 import { Sidebar } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FaUsers, FaRegMoneyBillAlt } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { Link, Outlet } from "react-router-dom";
@@ -8,16 +8,18 @@ import Header from "../../Pages/Shared/Header/Header";
 import { AiOutlineCar } from "react-icons/ai";
 import useRole from "../../Hooks/useRole";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import { SellRounded } from "@mui/icons-material";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, buyer, seller } = useContext(AuthContext);
   const [role] = useRole(user?.email);
   const userRole = role.role;
+
   return (
     <div>
       <Header></Header>
-      <div className="flex container mx-auto h-screen">
-        <Sidebar>
+      <div className="flex flex-col lg:flex-row container mx-auto h-screen gap-6 ">
+        <Sidebar className="h-auto lg:h-full">
           <React.Fragment key=".0">
             <Sidebar.Items>
               <Sidebar.ItemGroup>
@@ -30,7 +32,7 @@ const Dashboard = () => {
                           <FaRegMoneyBillAlt className="inline"></FaRegMoneyBillAlt>
                         );
                       }}
-                      label="Pro"
+                      label={buyer.length.toString()}
                       labelColor="gray"
                     >
                       All Buyers
@@ -44,7 +46,7 @@ const Dashboard = () => {
                       icon={function noRefCheck() {
                         return <BsShop className="inline"></BsShop>;
                       }}
-                      label="Pro"
+                      label={seller.length.toString()}
                       labelColor="gray"
                     >
                       All Sellers

@@ -16,6 +16,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [buyer, setBuyer] = useState([]);
+  const [seller, setSeller] = useState([]);
 
   const providerLogin = (provider) => {
     setLoading(true);
@@ -57,6 +59,10 @@ const AuthProvider = ({ children }) => {
     setLoading,
     user,
     loading,
+    buyer,
+    setBuyer,
+    seller,
+    setSeller,
   };
 
   return (
