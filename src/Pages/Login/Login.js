@@ -2,13 +2,14 @@ import { Google } from "@mui/icons-material";
 import { Divider, Icon } from "@mui/material";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, TextInput } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
   const { signIn, setLoading, providerLogin } = useContext(AuthContext);
@@ -16,6 +17,15 @@ const Login = () => {
   const location = useLocation();
   const googleProvider = new GoogleAuthProvider();
   const from = location.state?.from?.pathname || "/";
+  const [createdEmail, setCreatedEmail] = useState("");
+  const [token] = useToken(createdEmail);
+
+  if (token) {
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1000);
+  }
+
   const {
     register,
     handleSubmit,
@@ -26,24 +36,44 @@ const Login = () => {
   const handleGoogleLogin = () => {
     providerLogin(googleProvider)
       .then((res) => {
-        toast.success("Successfully logged in!");
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 1000);
+        const user = res.user;
+        setCreatedEmail(user.email);
+        saveUser(user.displayName, user.email, "buyer");
+        toast.success("Succesfully Logged in");
+        // navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
+  };
+
+  const saveUser = (name, email, role) => {
+    const user = {
+      name: name,
+      email: email,
+      role: role,
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCreatedEmail(email);
+        toast.success("Succesfully Signed Up");
+      });
   };
 
   const onSubmit = (data) => {
     console.log(data);
     signIn(data.email, data.password)
       .then((res) => {
+        setCreatedEmail(res.user.email);
         setLoading(false);
         reset();
         toast.success("Successfully logged in!");
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 1000);
       })
       .catch((error) => {
         console.error(error);

@@ -1,12 +1,13 @@
 import { Divider } from "@mui/material";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, Select, TextInput } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useToken from "../../Hooks/useToken";
 
 const Register = () => {
   const { createUser, updateUserProfile, logOut, providerLogin } =
@@ -15,12 +16,20 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const googleProvider = new GoogleAuthProvider();
+  const [createdEmail, setCreatedEmail] = useState("");
+  const [token] = useToken(createdEmail);
+
+  if (token) {
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1000);
+  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    resetField,
+    reset,
   } = useForm();
 
   const handleUpdateUserProfile = (name, photoURL) => {
@@ -64,32 +73,22 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        getToken(email);
+        setCreatedEmail(email);
+        toast.success("Succesfully Signed Up");
       });
   };
   const handleGoogleLogin = () => {
     providerLogin(googleProvider)
       .then((res) => {
         const user = res.user;
+        setCreatedEmail(user.email);
         saveUser(user.displayName, user.email, "buyer");
-        navigate(from, { replace: true });
+        toast.success("Succesfully Logged in");
+        // navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
 
-  const getToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          toast.success("Succesfully Signed Up");
-          localStorage.setItem("moto_token", data.accessToken);
-          setTimeout(() => {
-            navigate(from, { replace: true });
-          }, 2000);
-        }
-      });
-  };
   return (
     <div className="container mx-auto">
       <div className="w-1/2 mx-auto">

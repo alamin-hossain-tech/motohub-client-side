@@ -2,11 +2,16 @@ import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import { NavbarLink } from "flowbite-react/lib/esm/components/Navbar/NavbarLink";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useRole from "../../../Hooks/useRole";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [role] = useRole(user?.email);
+  const navigate = useNavigate();
+  console.log(role.role);
+
   const handleLogout = () => {
     logOut()
       .then((res) => {
@@ -15,6 +20,15 @@ const Header = () => {
       .catch((err) => {
         toast.error("error.message");
       });
+  };
+  const handleDashboard = () => {
+    if (role.role === "buyer") {
+      navigate("/dashboard/my-orders");
+    } else if (role.role === "seller") {
+      navigate("/dashboard/add-product");
+    } else if (role.role === "admin") {
+      navigate("/dashboard/all-buyers");
+    }
   };
   return (
     <div className="container mx-auto py-2">
@@ -53,9 +67,9 @@ const Header = () => {
                   {user?.email}
                 </span>
               </Dropdown.Header>
-              <Link to="/dashboard">
-                <Dropdown.Item>Dashboard</Dropdown.Item>
-              </Link>
+
+              <Dropdown.Item onClick={handleDashboard}>Dashboard</Dropdown.Item>
+
               <Dropdown.Item>Settings</Dropdown.Item>
               <Dropdown.Item>Earnings</Dropdown.Item>
               <Dropdown.Divider />
