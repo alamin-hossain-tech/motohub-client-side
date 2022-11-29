@@ -40,6 +40,7 @@ export const routes = createBrowserRouter([
             <CategorProduct></CategorProduct>
           </PrivateRoutes>
         ),
+        loader: ({ params }) => params.id,
       },
     ],
   },

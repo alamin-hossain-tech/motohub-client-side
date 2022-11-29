@@ -1,6 +1,13 @@
 import { Divider } from "@mui/material";
 import { GoogleAuthProvider } from "firebase/auth";
-import { Button, Label, Select, TextInput } from "flowbite-react";
+import {
+  Button,
+  FileInput,
+  Label,
+  Select,
+  Spinner,
+  TextInput,
+} from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
@@ -10,8 +17,10 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useToken from "../../Hooks/useToken";
 
 const Register = () => {
+  const imghostkey = process.env.REACT_APP_imgbb;
   const { createUser, updateUserProfile, logOut, providerLogin } =
     useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -44,18 +53,35 @@ const Register = () => {
   };
 
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-      .then((result) => {
-        handleUpdateUserProfile(data.name, data.photoURL);
-        saveUser(data.name, data.email, data.role);
-        toast.success("Succesfully Signed Up");
-      })
-      .catch((e) => {
-        toast.error(
-          e.message === "Firebase: Error (auth/email-already-in-use)."
-            ? "Email already in Use"
-            : e.message
-        );
+    setIsLoading(true);
+    console.log(data);
+    const image = data.profile_image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imghostkey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        if (imageData.success) {
+          createUser(data.email, data.password)
+            .then((result) => {
+              handleUpdateUserProfile(data.name, imageData.data.url);
+              saveUser(data.name, data.email, data.role);
+              toast.success("Succesfully Signed Up");
+            })
+            .catch((e) => {
+              toast.error(
+                e.message === "Firebase: Error (auth/email-already-in-use)."
+                  ? "Email already in Use"
+                  : e.message
+              );
+              setIsLoading(false);
+            });
+          console.log("success");
+        }
       });
   };
   const saveUser = (name, email, role) => {
@@ -74,10 +100,11 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         setCreatedEmail(email);
-        location.reload();
-
+        setIsLoading(false);
+        reset();
         setTimeout(() => {
-          navigate();
+          navigate("/");
+          window.location.reload(false);
         }, 1000);
       });
   };
@@ -111,16 +138,15 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className="mb-2 block">
-              <Label htmlFor="photoURL" value="Your Profile Image Link" />
+            <div id="fileUpload" className="py-3">
+              <div className="mb-2 block">
+                <Label
+                  htmlFor="file"
+                  value="Your Profile Image (max-width: 600px)"
+                />
+              </div>
+              <FileInput id="file" {...register("profile_image")} />
             </div>
-            <TextInput
-              id="photoURL"
-              type="text"
-              placeholder="Link"
-              required={true}
-              {...register("photoURL")}
-            />
           </div>
           <div id="select">
             <div className="mb-2 block">
@@ -164,7 +190,12 @@ const Register = () => {
               </Link>
             </Label>
           </div>
-
+          {isLoading && (
+            <Spinner
+              aria-label="Center-aligned spinner example"
+              className="my-4"
+            />
+          )}
           <Button type="submit">Register</Button>
         </form>
         <div className="py-12">

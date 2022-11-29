@@ -43,6 +43,22 @@ const AllSeller = () => {
         .catch((err) => console.error(err));
     }
   };
+  const handleUnVerify = (id) => {
+    if (window.confirm("Are you sure want to Unverify?")) {
+      fetch(`http://localhost:5000/users/edit/${id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "aplication/json",
+          verify: "false",
+        },
+      })
+        .then((res) => {
+          toast.error("Unverified");
+          refetch();
+        })
+        .catch((err) => toast.error(err.message));
+    }
+  };
   const handleVerify = (id) => {
     fetch(`http://localhost:5000/users/edit/${id}`, {
       method: "PUT",
@@ -57,22 +73,7 @@ const AllSeller = () => {
       })
       .catch((err) => console.error(err));
   };
-  const handleUnVerify = (id) => {
-    if (window.confirm("Are you sure want to Unverify?")) {
-      fetch(`http://localhost:5000/edit/${id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "aplication/json",
-          verify: "false",
-        },
-      })
-        .then((res) => {
-          toast.error("Unverified");
-          refetch();
-        })
-        .catch((err) => console.error(err));
-    }
-  };
+
   return (
     <div>
       {role.role === "admin" ? (
