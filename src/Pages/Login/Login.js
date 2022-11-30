@@ -1,5 +1,4 @@
-import { Google } from "@mui/icons-material";
-import { Divider, Icon } from "@mui/material";
+import { Divider } from "@mui/material";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
@@ -29,7 +28,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+
     reset,
   } = useForm();
 
@@ -40,7 +39,7 @@ const Login = () => {
         setCreatedEmail(user.email);
         saveUser(user.displayName, user.email, "buyer");
         toast.success("Succesfully Logged in");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +73,7 @@ const Login = () => {
         setLoading(false);
         reset();
         toast.success("Successfully logged in!");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

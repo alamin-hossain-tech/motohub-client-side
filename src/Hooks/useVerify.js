@@ -5,13 +5,11 @@ const useVerify = (email) => {
   const [isVerifyLoading, setIsVerifyLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(
-        `https://doctors-portal-server-rust.vercel.app/users/admin/${email}`
-      )
+      fetch(`http://localhost:5000/users/verify/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          setIsVerify(data.isAdmin);
+          setIsVerify(data.isVerify);
           setIsVerifyLoading(false);
         });
     }

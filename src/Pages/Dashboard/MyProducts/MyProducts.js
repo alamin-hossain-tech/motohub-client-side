@@ -41,8 +41,6 @@ const MyProducts = () => {
     const day = dataTime.getDate();
     const date = day + ", " + month + " " + year;
     return date;
-
-    // return readabletime;
   };
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {

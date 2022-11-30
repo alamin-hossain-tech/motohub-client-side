@@ -18,7 +18,7 @@ import useToken from "../../Hooks/useToken";
 
 const Register = () => {
   const imghostkey = process.env.REACT_APP_imgbb;
-  const { createUser, updateUserProfile, logOut, providerLogin } =
+  const { createUser, updateUserProfile, providerLogin } =
     useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
     reset,
   } = useForm();
 
@@ -58,7 +58,7 @@ const Register = () => {
     const image = data.profile_image[0];
     const formData = new FormData();
     formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imghostkey}`;
+    const url = `https://api.imgbb.com/1/upload?key=${imghostkey}`;
     fetch(url, {
       method: "POST",
       body: formData,
@@ -103,9 +103,8 @@ const Register = () => {
         setIsLoading(false);
         reset();
         setTimeout(() => {
-          navigate("/");
           window.location.reload(false);
-        }, 1000);
+        }, 2000);
       });
   };
   const handleGoogleLogin = () => {

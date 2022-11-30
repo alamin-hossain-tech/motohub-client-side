@@ -16,6 +16,7 @@ import { Button } from "flowbite-react";
 
 import React, { useContext } from "react";
 import { AiOutlineCar } from "react-icons/ai";
+import { GrStatusGood } from "react-icons/gr";
 import { BsPerson } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { IoLocationSharp, IoPricetagsOutline } from "react-icons/io5";
@@ -24,10 +25,29 @@ import { TbLicense } from "react-icons/tb";
 import { TiTick } from "react-icons/ti";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import useVerify from "../../../Hooks/useVerify";
 
-const AdvertiseCard = () => {
+const AdvertiseCard = ({ product }) => {
+  console.log(product);
+  const {
+    seller_email,
+    product_image,
+    name,
+    buy_price,
+    sell_price,
+    condition,
+    model_year,
+    published_time,
+    reg_year,
+    seller,
+    seller_contact,
+    seller_image,
+    seller_location,
+    _id,
+  } = product;
   const navigate = useNavigate();
-  const location = useLocation();
+  const [isVerify] = useVerify(seller_email);
+  console.log(isVerify);
   const { user } = useContext(AuthContext);
   const style = {
     position: "absolute",
@@ -47,6 +67,29 @@ const AdvertiseCard = () => {
     }
   };
   const handleClose = () => setOpen(false);
+
+  const getTime = (time) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const dataTime = new Date(time);
+    let month = months[dataTime.getMonth()];
+    const year = dataTime.getFullYear();
+    const day = dataTime.getDate();
+    const date = day + ", " + month + " " + year;
+    return date;
+  };
   return (
     <>
       <Card>
@@ -54,85 +97,109 @@ const AdvertiseCard = () => {
           component="img"
           alt="green iguana"
           height="140"
-          image="https://flowbite.com/docs/images/blog/image-1.jpg"
+          image={product_image}
         />
         <div className="px-5">
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
             badgeContent={
-              <Tooltip title="Verified Seller" placement="top">
-                <IconButton>
-                  <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
-                </IconButton>
-              </Tooltip>
+              isVerify && (
+                <Tooltip title="Verified Seller" placement="top">
+                  <IconButton>
+                    <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
+                  </IconButton>
+                </Tooltip>
+              )
             }
             className="-mt-7"
           >
             <Avatar
               alt="Travis Howard"
-              src="/static/images/avatar/2.jpg"
+              src={seller_image}
               sx={{ width: 56, height: 56 }}
             />
           </Badge>
         </div>
         <CardContent className="text-center">
           <Typography gutterBottom variant="h5" component="div">
-            Lizard{" "}
-            <Tooltip title="Verified Seller" placement="top">
-              <IconButton>
-                <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
-              </IconButton>
-            </Tooltip>
+            {name}
           </Typography>
           <div className="text-center text-gray-500">
             <p className="font-semibold">
               <IoLocationSharp className="inline text-xl"></IoLocationSharp>{" "}
-              Location :
+              {seller_location}
             </p>
+            <p className="">
+              <BsPerson className="inline text-xl"></BsPerson>
+              {seller}
+              {isVerify && (
+                <Tooltip title="Verified Seller" placement="top">
+                  <IconButton>
+                    <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
+                  </IconButton>
+                </Tooltip>
+              )}
+            </p>
+            <p>{seller_contact}</p>
           </div>
         </CardContent>
-        <div className="grid grid-cols-2 text-center text-gray-500">
-          <div className="border-t border-b border-r py-5">
-            <AiOutlineCar className="inline text-xl"></AiOutlineCar>
-            <p className="font-semibold">Model Year</p>
+        <div className="grid grid-cols-2 text-center  text-gray-600">
+          <div className="border-t border-b border-r py-3">
+            <p className="font-semibold">
+              <AiOutlineCar className="inline text-xl mr-2"></AiOutlineCar>Model
+              Year
+            </p>
+            <p>{model_year}</p>
           </div>
-          <div className="border-t border-b py-5">
-            <TbLicense className="inline text-xl"></TbLicense>
-            <p className="font-semibold">Registration Year</p>
+          <div className="border-t border-b py-3">
+            <p className="font-semibold">
+              <TbLicense className="inline text-xl mr-2"></TbLicense>
+              Registration Year
+            </p>
+            <p>{reg_year}</p>
           </div>
-        </div>
-        <div className="grid grid-cols-2 text-center text-gray-500">
-          <div className="border-b border-r py-5">
-            <IoPricetagsOutline className="inline text-xl"></IoPricetagsOutline>
-            <p className="font-semibold">Buying Price</p>
+          <div className="border-b border-r py-3">
+            <p className="font-semibold">
+              <IoPricetagsOutline className="inline text-xl mr-2"></IoPricetagsOutline>
+              Buying Price
+            </p>
+            <p>${buy_price}</p>
           </div>
-          <div className="border-b py-5">
-            <MdOutlinePriceChange className="inline text-xl"></MdOutlinePriceChange>
-            <p className="font-semibold">Resell Price</p>
+          <div className="border-b py-3">
+            <p className="font-semibold">
+              <MdOutlinePriceChange className="inline text-xl mr-2"></MdOutlinePriceChange>
+              Resell Price
+            </p>
+            <p>${sell_price}</p>
           </div>
-        </div>
-        <div className="grid grid-cols-2 text-center text-gray-500">
-          <div className="border-b border-r py-5">
-            <IoMdTime className="inline text-xl"></IoMdTime>
-            <p className="font-semibold">Post Time</p>
+          <div className="border-b border-r py-3">
+            <p className="font-semibold">
+              <IoMdTime className="inline text-xl mr-2"></IoMdTime>Post Time
+            </p>
+            <p>{getTime(published_time)}</p>
           </div>
-          <div className="border-b py-5">
-            <BsPerson className="inline text-xl"></BsPerson>
-            <p className="font-semibold">Seller Name</p>
-            <p className="">
-              Al-Amin Hossain{" "}
-              <Tooltip title="Verified Seller" placement="top">
-                <IconButton>
-                  <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
-                </IconButton>
-              </Tooltip>
+          <div className="border-b py-3 flex items-center justify-center">
+            <p className="font-semibold">
+              <GrStatusGood className="inline text-xl mr-2"></GrStatusGood>
+              <span
+                className={`${condition === "Excellent" && "text-teal-500"} ${
+                  condition === "Good" && "text-green-400"
+                } ${condition === "Fair" && "text-orange-400"}`}
+              >
+                {condition}
+              </span>
             </p>
           </div>
         </div>
-        <CardActions className="justify-center my-5">
-          <Button onClick={handleOpen}>Book Now</Button>
-        </CardActions>
+
+        {isVerify ? (
+          <CardActions className="justify-center my-5">
+            <Button onClick={handleOpen}>Book Now</Button>
+          </CardActions>
+        ) : (
+          <div className="pt-5"></div>
+        )}
       </Card>
       <Modal
         open={open}

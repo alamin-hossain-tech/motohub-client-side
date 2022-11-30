@@ -19,11 +19,7 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <PrivateRoutes>
-            <Home></Home>
-          </PrivateRoutes>
-        ),
+        element: <Home></Home>,
       },
       {
         path: "/login",
