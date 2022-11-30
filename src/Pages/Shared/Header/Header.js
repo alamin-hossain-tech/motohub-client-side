@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
+import logo from "../../../Assets/Logo.svg";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -35,13 +36,9 @@ const Header = () => {
       <Navbar fluid={true} rounded={true}>
         <Link to="/">
           <Navbar.Brand>
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              Flowbite
+            <img src={logo} className="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
+              MotoHub
             </span>
           </Navbar.Brand>
         </Link>

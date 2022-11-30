@@ -1,17 +1,13 @@
 import { Footer } from "flowbite-react";
+import logo from "../../../Assets/brand-logo.svg";
 import React from "react";
 const FooterMain = () => {
   return (
     <Footer container={true}>
-      <div className="w-full">
+      <div className="container mx-auto">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-          <div>
-            <Footer.Brand
-              href="https://flowbite.com"
-              src="https://flowbite.com/docs/images/logo.svg"
-              alt="Flowbite Logo"
-              name="Flowbite"
-            />
+          <div className="w-24">
+            <img className="hover:cursor-pointer" src={logo} alt="" />
           </div>
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
