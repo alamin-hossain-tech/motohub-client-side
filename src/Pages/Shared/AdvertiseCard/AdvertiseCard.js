@@ -26,9 +26,9 @@ import { TiTick } from "react-icons/ti";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useVerify from "../../../Hooks/useVerify";
+import useRole from "../../../Hooks/useRole";
 
 const AdvertiseCard = ({ product }) => {
-  console.log(product);
   const {
     seller_email,
     product_image,
@@ -47,8 +47,8 @@ const AdvertiseCard = ({ product }) => {
   } = product;
   const navigate = useNavigate();
   const [isVerify] = useVerify(seller_email);
-  console.log(isVerify);
   const { user } = useContext(AuthContext);
+  const [role] = useRole(user.email);
   const style = {
     position: "absolute",
     top: "50%",
@@ -193,12 +193,10 @@ const AdvertiseCard = ({ product }) => {
           </div>
         </div>
 
-        {isVerify ? (
+        {isVerify && role.role === "buyer" && (
           <CardActions className="justify-center my-5">
             <Button onClick={handleOpen}>Book Now</Button>
           </CardActions>
-        ) : (
-          <div className="pt-5"></div>
         )}
       </Card>
       <Modal

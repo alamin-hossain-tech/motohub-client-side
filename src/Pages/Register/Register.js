@@ -15,6 +15,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useToken from "../../Hooks/useToken";
+import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const Register = () => {
   const imghostkey = process.env.REACT_APP_imgbb;
@@ -120,91 +121,94 @@ const Register = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <div className="w-1/2 mx-auto">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* register your input into the hook by invoking the "register" function */}
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="name" value="Your Name" />
-            </div>
-            <TextInput
-              id="name"
-              type="text"
-              placeholder="John Doe"
-              required={true}
-              {...register("name")}
-            />
-          </div>
-          <div>
-            <div id="fileUpload" className="py-3">
+    <div>
+      <TittleHeader title={"Register"}></TittleHeader>
+      <div className="container mx-auto py-12">
+        <div className="w-1/2 mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* register your input into the hook by invoking the "register" function */}
+            <div>
               <div className="mb-2 block">
-                <Label
-                  htmlFor="file"
-                  value="Your Profile Image (max-width: 600px)"
-                />
+                <Label htmlFor="name" value="Your Name" />
               </div>
-              <FileInput id="file" {...register("profile_image")} />
+              <TextInput
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                required={true}
+                {...register("name")}
+              />
             </div>
-          </div>
-          <div id="select">
-            <div className="mb-2 block">
-              <Label htmlFor="role" value="Want to:" />
+            <div>
+              <div id="fileUpload" className="py-3">
+                <div className="mb-2 block">
+                  <Label
+                    htmlFor="file"
+                    value="Your Profile Image (max-width: 600px)"
+                  />
+                </div>
+                <FileInput id="file" {...register("profile_image")} />
+              </div>
             </div>
-            <Select id="role" required={true} {...register("role")}>
-              <option value={"buyer"}>Buy</option>
-              <option value={"seller"}>Sell</option>
-            </Select>
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="email1" value="Your email" />
+            <div id="select">
+              <div className="mb-2 block">
+                <Label htmlFor="role" value="Want to:" />
+              </div>
+              <Select id="role" required={true} {...register("role")}>
+                <option value={"buyer"}>Buy</option>
+                <option value={"seller"}>Sell</option>
+              </Select>
             </div>
-            <TextInput
-              id="email1"
-              type="email"
-              placeholder="name@flowbite.com"
-              required={true}
-              {...register("email")}
-            />
-          </div>
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="password1" value="Your password" />
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="email1" value="Your email" />
+              </div>
+              <TextInput
+                id="email1"
+                type="email"
+                placeholder="name@flowbite.com"
+                required={true}
+                {...register("email")}
+              />
             </div>
-            <TextInput
-              id="password1"
-              type="password"
-              required={true}
-              {...register("password")}
-            />
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="password1" value="Your password" />
+              </div>
+              <TextInput
+                id="password1"
+                type="password"
+                required={true}
+                {...register("password")}
+              />
+            </div>
+
+            {/* {errors.exampleRequired && <span>This field is required</span>} */}
+            <div className="flex items-center gap-2 py-4">
+              <Label htmlFor="agree">
+                Already Have an Account ? Please{" "}
+                <Link to="/login" className="text-blue-700">
+                  Login
+                </Link>
+              </Label>
+            </div>
+            {isLoading && (
+              <Spinner
+                aria-label="Center-aligned spinner example"
+                className="my-4"
+              />
+            )}
+            <Button type="submit">Register</Button>
+          </form>
+          <div className="py-12">
+            <Divider>OR</Divider>
           </div>
 
-          {/* {errors.exampleRequired && <span>This field is required</span>} */}
-          <div className="flex items-center gap-2 py-4">
-            <Label htmlFor="agree">
-              Already Have an Account ? Please{" "}
-              <Link to="/login" className="text-blue-700">
-                Login
-              </Link>
-            </Label>
-          </div>
-          {isLoading && (
-            <Spinner
-              aria-label="Center-aligned spinner example"
-              className="my-4"
-            />
-          )}
-          <Button type="submit">Register</Button>
-        </form>
-        <div className="py-12">
-          <Divider>OR</Divider>
+          <Button onClick={handleGoogleLogin} className="mx-auto">
+            <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
+          </Button>
+          <Toaster />
         </div>
-
-        <Button onClick={handleGoogleLogin} className="mx-auto">
-          <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
-        </Button>
-        <Toaster />
       </div>
     </div>
   );

@@ -28,20 +28,19 @@ const Header = () => {
     } else if (role.role === "seller") {
       navigate("/dashboard/add-product");
     } else if (role.role === "admin") {
-      navigate("/dashboard/all-buyers");
+      navigate("/dashboard/sellers");
     }
   };
   return (
     <div className="container mx-auto py-2">
       <Navbar fluid={true} rounded={true}>
-        <Link to="/">
-          <Navbar.Brand>
-            <img src={logo} className="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
-              MotoHub
-            </span>
-          </Navbar.Brand>
+        <Link>
+          <img src={logo} className="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
+          <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
+            MotoHub
+          </span>
         </Link>
+
         <div className="flex md:order-2">
           {user?.email ? (
             <Dropdown
@@ -67,8 +66,6 @@ const Header = () => {
 
               <Dropdown.Item onClick={handleDashboard}>Dashboard</Dropdown.Item>
 
-              <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
             </Dropdown>
@@ -82,13 +79,9 @@ const Header = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Link to="/">
-            <Navbar.Link>Home</Navbar.Link>
-          </Link>
-          <Navbar.Link>About</Navbar.Link>
-          <Navbar.Link>Services</Navbar.Link>
-          <Navbar.Link>Pricing</Navbar.Link>
-          <Navbar.Link>Contact</Navbar.Link>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/category/1">Brwose Products</NavLink>
+          <NavLink to="/blog">Blog</NavLink>
         </Navbar.Collapse>
       </Navbar>
     </div>

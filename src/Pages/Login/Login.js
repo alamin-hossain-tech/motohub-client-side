@@ -9,6 +9,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useToken from "../../Hooks/useToken";
+import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const Login = () => {
   const { signIn, setLoading, providerLogin } = useContext(AuthContext);
@@ -85,53 +86,56 @@ const Login = () => {
       });
   };
   return (
-    <div className="container mx-auto">
-      <div className="w-1/2 mx-auto">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* register your input into the hook by invoking the "register" function */}
-          <div className="mb-2 block">
-            <Label htmlFor="email1" value="Your email" />
-          </div>
-          <TextInput
-            id="email1"
-            type="email"
-            placeholder="name@flowbite.com"
-            required={true}
-            {...register("email")}
-          />
-          <div>
+    <div>
+      <TittleHeader title={"Login"}></TittleHeader>
+      <div className="container mx-auto py-12">
+        <div className="w-1/2 mx-auto">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* register your input into the hook by invoking the "register" function */}
             <div className="mb-2 block">
-              <Label htmlFor="password1" value="Your password" />
+              <Label htmlFor="email1" value="Your email" />
             </div>
             <TextInput
-              id="password1"
-              type="password"
+              id="email1"
+              type="email"
+              placeholder="name@flowbite.com"
               required={true}
-              {...register("password")}
+              {...register("email")}
             />
+            <div>
+              <div className="mb-2 block">
+                <Label htmlFor="password1" value="Your password" />
+              </div>
+              <TextInput
+                id="password1"
+                type="password"
+                required={true}
+                {...register("password")}
+              />
+            </div>
+
+            {/* {errors.exampleRequired && <span>This field is required</span>} */}
+            <div className="flex items-center gap-2 py-4">
+              <Label htmlFor="agree">
+                New to this site ? Please{" "}
+                <Link to="/register" className="text-blue-700">
+                  Register
+                </Link>
+              </Label>
+            </div>
+
+            <Button type="submit">Login</Button>
+          </form>
+          <div className="py-12">
+            <Divider>OR</Divider>
           </div>
 
-          {/* {errors.exampleRequired && <span>This field is required</span>} */}
-          <div className="flex items-center gap-2 py-4">
-            <Label htmlFor="agree">
-              New to thi site ? Please{" "}
-              <Link to="/register" className="text-blue-700">
-                Register
-              </Link>
-            </Label>
-          </div>
+          <Button onClick={handleGoogleLogin} className="mx-auto">
+            <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
+          </Button>
 
-          <Button type="submit">Login</Button>
-        </form>
-        <div className="py-12">
-          <Divider>OR</Divider>
+          <Toaster />
         </div>
-
-        <Button onClick={handleGoogleLogin} className="mx-auto">
-          <FaGoogle className="inline text mr-3"></FaGoogle> Google Login
-        </Button>
-
-        <Toaster />
       </div>
     </div>
   );

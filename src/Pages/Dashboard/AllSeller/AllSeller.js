@@ -81,44 +81,52 @@ const AllSeller = () => {
           <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
             All Sellers
           </h2>
-          <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
-            <thead class="text-white">
+          <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
+            <thead className="text-white">
               {data.map((u, i) => (
                 <tr
                   key={i}
-                  class="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0"
+                  className="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0"
                 >
-                  <th class="p-3 text-left border-grey-light border">Sl</th>
-                  <th class="p-3 text-left border-grey-light border">Name</th>
-                  <th class="p-3 text-left border-grey-light border">Email</th>
-                  <th class="p-3 text-left border-grey-light border">Role</th>
-                  <th class="p-3 text-left border-grey-light border">Verify</th>
-                  <th class="p-3 text-left border-grey-light border">
+                  <th className="p-3 text-left border-grey-light border">Sl</th>
+                  <th className="p-3 text-left border-grey-light border">
+                    Name
+                  </th>
+                  <th className="p-3 text-left border-grey-light border">
+                    Email
+                  </th>
+                  <th className="p-3 text-left border-grey-light border">
+                    Role
+                  </th>
+                  <th className="p-3 text-left border-grey-light border">
+                    Verify
+                  </th>
+                  <th className="p-3 text-left border-grey-light border">
                     Actions
                   </th>
                 </tr>
               ))}
             </thead>
-            <tbody class="flex-1 sm:flex-none">
+            <tbody className="flex-1 sm:flex-none">
               {data.map((user, i) => (
                 <tr
                   key={i}
-                  class="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"
+                  className="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"
                 >
-                  <td class="border-grey-light border hover:bg-gray-100 p-3">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3">
                     {i + 1}
                   </td>
-                  <td class="border-grey-light border hover:bg-gray-100 p-3">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3">
                     {user.name}
                   </td>
-                  <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
                     {user.email}
                   </td>
-                  <td class="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
                     {user.role}
                   </td>
 
-                  <td class="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3 text-green-400 hover:text-green-600 hover:font-medium cursor-pointer">
                     {user.verify !== "true" && (
                       <span onClick={() => handleVerify(user._id)}>Verify</span>
                     )}
@@ -129,7 +137,7 @@ const AllSeller = () => {
                     )}
                   </td>
                   <td
-                    class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer"
+                    className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer"
                     onClick={() => handleDelete(user._id)}
                   >
                     Delete

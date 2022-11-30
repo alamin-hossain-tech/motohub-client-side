@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { Tabs } from "flowbite-react";
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import AdvertiseCard from "../Shared/AdvertiseCard/AdvertiseCard";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
@@ -42,18 +42,18 @@ const CategorProduct = () => {
       <TittleHeader title={getCategoryTitle(id)}></TittleHeader>
       <div className=" border-b ">
         <div className="flex container justify-center mx-auto gap-5">
-          <Link to="/category/1">
+          <NavLink to="/category/1">
             <Button className="px-4 py-2">Toyota</Button>
-          </Link>
-          <Link to="/category/2">
+          </NavLink>
+          <NavLink to="/category/2">
             <Button className="px-4 py-2">Honda</Button>
-          </Link>
-          <Link to="/category/3">
+          </NavLink>
+          <NavLink to="/category/3">
             <Button className="px-4 py-2">Hyundai</Button>
-          </Link>
-          <Link to="/category/4">
+          </NavLink>
+          <NavLink to="/category/4">
             <Button className="px-4 py-2">Nissan</Button>
-          </Link>
+          </NavLink>
         </div>
       </div>
       {products.length === 0 && (

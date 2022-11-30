@@ -38,6 +38,10 @@ export const routes = createBrowserRouter([
         ),
         loader: ({ params }) => params.id,
       },
+      {
+        path: "*",
+        element: <div> Coming Soon</div>,
+      },
     ],
   },
   {

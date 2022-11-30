@@ -3,8 +3,8 @@ import logo from "../../../Assets/brand-logo.svg";
 import React from "react";
 const FooterMain = () => {
   return (
-    <Footer container={true}>
-      <div className="container mx-auto">
+    <Footer container={true} className="bg-gray-200 mt-5 ">
+      <div className="container mx-auto py-7">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div className="w-24">
             <img className="hover:cursor-pointer" src={logo} alt="" />
@@ -35,7 +35,7 @@ const FooterMain = () => {
         </div>
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+          <Footer.Copyright by="MotoHub™" year={2022} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             {/* <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />
