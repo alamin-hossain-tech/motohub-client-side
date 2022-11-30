@@ -1,10 +1,11 @@
 import { Logout } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import axios from "axios";
-import { Tabs } from "flowbite-react";
+
+import { Spinner, Tabs } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useAxios from "../../Hooks/useAxios";
 import AdvertiseCard from "../Shared/AdvertiseCard/AdvertiseCard";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
@@ -26,24 +27,22 @@ const CategorProduct = () => {
       return "Nissan";
     }
   };
-
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/products/category/${id}`, {
-        headers: {
-          authorization: ` Bearer ${localStorage.getItem("moto_token")}`,
-        },
-      })
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((err) => {
-        logOut()
-          .then((res) => {})
-          .catch((err) => console.log(err));
-      });
-  }, [id]);
+  const { response, loading, error } = useAxios({
+    method: "get",
+    url: `http://localhost:5000/products/category/${id}`,
+    headers: JSON.stringify({
+      headers: {
+        authorization: ` Bearer ${localStorage.getItem("moto_token")}`,
+      },
+    }),
+    body: JSON.stringify({}),
+  });
+  if (loading) {
+    return <Spinner aria-label="Center-aligned spinner example" />;
+  }
+  if (error) {
+    logOut().then().catch();
+  }
 
   return (
     <div>
@@ -64,14 +63,14 @@ const CategorProduct = () => {
           </NavLink>
         </div>
       </div>
-      {products.length === 0 && (
+      {/* {data.length === 0 && (
         <div className=" h-72 flex justify-center items-center ">
           {" "}
           <h2>No Products Found in this category</h2>
         </div>
-      )}
+      )} */}
       <div className=" py-5 grid grid-cols-4 gap-8 container mx-auto my-5">
-        {products.map((product) => (
+        {response.map((product) => (
           <AdvertiseCard key={product._id} product={product}></AdvertiseCard>
         ))}
       </div>
