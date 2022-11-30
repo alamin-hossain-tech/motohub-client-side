@@ -66,7 +66,6 @@ const Login = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     signIn(data.email, data.password)
       .then((res) => {
         setCreatedEmail(res.user.email);

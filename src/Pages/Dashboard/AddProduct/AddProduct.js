@@ -56,7 +56,6 @@ const AddProduct = () => {
             seller_location: data.location,
             status: "Available",
           };
-          console.log(product);
           fetch("http://localhost:5000/add-product", {
             method: "POST",
             headers: {
@@ -66,7 +65,6 @@ const AddProduct = () => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
               toast.success("Added");
               reset();
               setIsLoading(false);

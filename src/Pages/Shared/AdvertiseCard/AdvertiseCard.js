@@ -12,9 +12,9 @@ import {
   Typography,
 } from "@mui/material";
 import {} from "@mui/material/Icon";
-import { Button } from "flowbite-react";
+import { Button, Label, Spinner, TextInput } from "flowbite-react";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineCar } from "react-icons/ai";
 import { GrStatusGood } from "react-icons/gr";
 import { BsPerson } from "react-icons/bs";
@@ -27,6 +27,8 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useVerify from "../../../Hooks/useVerify";
 import useRole from "../../../Hooks/useRole";
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
 const AdvertiseCard = ({ product }) => {
   const {
@@ -45,6 +47,13 @@ const AdvertiseCard = ({ product }) => {
     seller_location,
     _id,
   } = product;
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+    reset,
+  } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [isVerify] = useVerify(seller_email);
   const { user } = useContext(AuthContext);
@@ -90,6 +99,42 @@ const AdvertiseCard = ({ product }) => {
     const date = day + ", " + month + " " + year;
     return date;
   };
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    const order = {
+      customer_name: user.displayName,
+      customer_phone: data.customer_phone,
+      customer_email: user.email,
+      meeting_location: data.meeting_location,
+      product_name: name,
+      product_image: product_image,
+      product_id: _id,
+      product_price: sell_price,
+    };
+    fetch("http://localhost:5000/order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          toast.success("Order placed Succesfully ");
+          setIsLoading(false);
+          reset();
+          setTimeout(() => {
+            setOpen(false);
+          }, 3000);
+        }
+        if (result.error) {
+          toast.error("Already Ordered");
+          setIsLoading(false);
+        }
+      });
+  };
+
   return (
     <>
       <Card>
@@ -199,6 +244,8 @@ const AdvertiseCard = ({ product }) => {
           </CardActions>
         )}
       </Card>
+
+      {/* Buying Modal  */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -206,14 +253,97 @@ const AdvertiseCard = ({ product }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {user?.displayName ? user.displayName : ""}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {/* register your input into the hook by invoking the "register" function */}
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="name" value="Your Name" />
+                </div>
+                <TextInput
+                  id="name"
+                  type="text"
+                  placeholder=""
+                  defaultValue={user.displayName}
+                  disabled={true}
+                  {...register("name")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Your Email" />
+                </div>
+                <TextInput
+                  type="text"
+                  placeholder=""
+                  defaultValue={user.email}
+                  disabled={true}
+                  {...register("email")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Product Name" />
+                </div>
+                <TextInput
+                  type="text"
+                  placeholder=""
+                  defaultValue={name}
+                  disabled={true}
+                  {...register("product_name")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Product Price" />
+                </div>
+                <TextInput
+                  type="text"
+                  placeholder=""
+                  defaultValue={`$${sell_price}`}
+                  disabled={true}
+                  {...register("product_price")}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Your Phone Number" />
+                </div>
+                <TextInput
+                  type="number"
+                  placeholder="017........"
+                  {...register("customer_phone")}
+                  required={true}
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label value="Meeting Location" />
+                </div>
+                <TextInput
+                  type="text"
+                  placeholder="Dhaka"
+                  {...register("meeting_location")}
+                  required={true}
+                />
+              </div>
+              {isLoading && (
+                <Spinner
+                  aria-label="Center-aligned spinner example"
+                  className="my-4"
+                />
+              )}
+              <div className="flex gap-3 pt-3">
+                <Button type="submit">Submit</Button>
+                <Button onClick={() => setOpen(false)} color="failure">
+                  Cancel
+                </Button>
+              </div>
+            </form>
+          </div>
         </Box>
       </Modal>
+      <Toaster></Toaster>
     </>
   );
 };

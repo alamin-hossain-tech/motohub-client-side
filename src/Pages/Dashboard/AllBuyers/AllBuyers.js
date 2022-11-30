@@ -19,7 +19,7 @@ const AllBuyers = () => {
     queryFn: () =>
       fetch(`http://localhost:5000/users?role=buyer`).then((res) => res.json()),
   });
-  console.log(data.length);
+
   useEffect(() => {
     if (data) {
       setBuyer(data);

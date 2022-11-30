@@ -1,12 +1,15 @@
+import { Logout } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { Tabs } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import AdvertiseCard from "../Shared/AdvertiseCard/AdvertiseCard";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const CategorProduct = () => {
+  const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const id = useLoaderData();
   const getCategoryTitle = (id) => {
@@ -34,6 +37,11 @@ const CategorProduct = () => {
       })
       .then((response) => {
         setProducts(response.data);
+      })
+      .catch((err) => {
+        logOut()
+          .then((res) => {})
+          .catch((err) => console.log(err));
       });
   }, [id]);
 

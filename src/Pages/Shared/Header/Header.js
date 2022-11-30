@@ -11,7 +11,6 @@ const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [role] = useRole(user?.email);
   const navigate = useNavigate();
-  console.log(role.role);
 
   const handleLogout = () => {
     logOut()

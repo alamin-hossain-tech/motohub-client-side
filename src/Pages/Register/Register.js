@@ -55,7 +55,6 @@ const Register = () => {
 
   const onSubmit = (data) => {
     setIsLoading(true);
-    console.log(data);
     const image = data.profile_image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -81,7 +80,6 @@ const Register = () => {
               );
               setIsLoading(false);
             });
-          console.log("success");
         }
       });
   };

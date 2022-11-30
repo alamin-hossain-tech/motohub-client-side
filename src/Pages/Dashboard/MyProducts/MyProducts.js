@@ -56,7 +56,6 @@ const MyProducts = () => {
         })
         .catch((err) => console.error(err));
     }
-    console.log(id);
   };
   const handleAdvertise = (id) => {
     if (window.confirm("Are you sure want to Advertise?")) {
@@ -72,7 +71,6 @@ const MyProducts = () => {
         })
         .catch((err) => console.error(err));
     }
-    console.log(id);
   };
 
   return (
