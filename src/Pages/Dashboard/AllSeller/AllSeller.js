@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "flowbite-react";
 import React, { useContext, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaLock } from "react-icons/fa";
 import { GoVerified } from "react-icons/go";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";

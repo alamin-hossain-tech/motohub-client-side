@@ -10,6 +10,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
+import Error from "../../Pages/Shared/Error/Error";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const routes = createBrowserRouter([
@@ -40,7 +41,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div> Coming Soon</div>,
+        element: <Error title={"Error 404"}> </Error>,
       },
     ],
   },

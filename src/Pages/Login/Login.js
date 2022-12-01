@@ -80,7 +80,7 @@ const Login = () => {
         toast.error(
           error.message === "Firebase: Error (auth/wrong-password)."
             ? "Wrong Password"
-            : "User Not Fount"
+            : "User not found"
         );
       });
   };

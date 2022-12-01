@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 import { getTime } from "../../../Utility/getTime";
+import Error from "../../Shared/Error/Error";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
@@ -143,11 +144,6 @@ const MyProducts = () => {
                         // <p className="font-semibold text-green-500"></p>
                         <Chip label="Advertised" color="success" />
                       )}
-                    {/* {product.advertise === "false" &&
-                      product.status === "Sold" && (
-                        // <p className="font-semibold text-green-500"></p>
-                        <Chip label="Soldout " color="info" />
-                      )} */}
                     {product.advertise === "false" &&
                       product.status === "Available" && (
                         <Button
@@ -171,9 +167,7 @@ const MyProducts = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <div className="h-screen flex items-center justify-center">
-          <Spinner aria-label="Center-aligned spinner example" />
-        </div>
+        <Error title={"Unauthrized Access"}></Error>
       )}
     </div>
   );

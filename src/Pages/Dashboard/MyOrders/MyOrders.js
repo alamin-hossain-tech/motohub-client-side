@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 import { getTime } from "../../../Utility/getTime";
+import Error from "../../Shared/Error/Error";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -126,9 +127,7 @@ const MyOrders = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <div className="h-[60vh] flex items-center justify-center">
-          <Spinner aria-label="Center-aligned spinner example" />
-        </div>
+        <Error title={"Unauthrized Access"}></Error>
       )}
     </div>
   );

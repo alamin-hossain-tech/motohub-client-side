@@ -1,5 +1,4 @@
 import React from "react";
-import AdvertiseCard from "../../Shared/AdvertiseCard/AdvertiseCard";
 import HeadingDivider from "../../Shared/HeadingDivider/HeadingDivider";
 
 const Advertise = () => {

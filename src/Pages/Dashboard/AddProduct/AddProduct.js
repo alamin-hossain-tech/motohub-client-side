@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
+import Error from "../../Shared/Error/Error";
 
 const AddProduct = () => {
   const imghostkey = process.env.REACT_APP_imgbb;
@@ -216,9 +217,10 @@ const AddProduct = () => {
           <Toaster />
         </div>
       ) : (
-        <div className="h-screen flex items-center justify-center">
-          <Spinner aria-label="Center-aligned spinner example" />
-        </div>
+        // <div className="h-screen flex items-center justify-center">
+        //   <Spinner aria-label="Center-aligned spinner example" />
+        // </div>
+        <Error title={"Unauthorized Access "}></Error>
       )}
     </div>
   );
