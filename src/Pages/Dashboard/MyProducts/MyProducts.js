@@ -68,9 +68,12 @@ const MyProducts = () => {
     <div>
       {role.role === "seller" ? (
         <div>
-          <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
-            My Products
-          </h2>
+          {data.length === 0 && (
+            <p className="text-center pt-5 h-[60vh]">
+              {" "}
+              You have no Product yet
+            </p>
+          )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
               {data.map((p, i) => (
@@ -167,7 +170,9 @@ const MyProducts = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <Error title={"Unauthrized Access"}></Error>
+        <div className="h-[60vh] flex items-center justify-center">
+          <Spinner aria-label="Center-aligned spinner example" />
+        </div>
       )}
     </div>
   );

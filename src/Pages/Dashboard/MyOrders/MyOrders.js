@@ -9,7 +9,7 @@ import Error from "../../Shared/Error/Error";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const [role] = useRole(user.email);
+  const [role, loading] = useRole(user.email);
   const {
     data = [],
     isLoading,
@@ -47,12 +47,15 @@ const MyOrders = () => {
         .catch((err) => console.error(err));
     }
   };
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div>
       {role.role === "buyer" ? (
         <div>
           {data.length === 0 && (
-            <p className="text-center"> You have no order yet</p>
+            <p className="text-center pt-5 h-[60vh]"> You have no order yet</p>
           )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
@@ -127,7 +130,9 @@ const MyOrders = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <Error title={"Unauthrized Access"}></Error>
+        <div className="h-[60vh] flex items-center justify-center">
+          <Spinner aria-label="Center-aligned spinner example" />
+        </div>
       )}
     </div>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const useRole = (email) => {
   const [role, setRole] = useState("");
+
   useEffect(() => {
     if (email) {
       fetch(`http://localhost:5000/users/role/${email}`)
@@ -13,6 +14,7 @@ const useRole = (email) => {
         });
     }
   }, [email]);
+
   return [role];
 };
 

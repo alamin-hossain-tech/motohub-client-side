@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <div className="container mx-auto py-2">
       <Navbar fluid={true} rounded={true}>
-        <Link>
+        <Link to="/">
           <img src={logo} className="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
           <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
             MotoHub

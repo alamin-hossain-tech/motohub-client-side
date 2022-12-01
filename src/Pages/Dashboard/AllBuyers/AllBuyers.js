@@ -49,6 +49,7 @@ const AllBuyers = () => {
           <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
             All Buyers
           </h2>
+          {<p className="text-center pt-5 h-[60vh]"> No Buyers yet</p>}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
               {data.map((u, i) => (
@@ -106,10 +107,9 @@ const AllBuyers = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        // <div className="h-screen flex items-center justify-center">
-        //   <Spinner aria-label="Center-aligned spinner example" />
-        // </div>
-        <Error title={"Unauthorized Access"}></Error>
+        <div className="h-[60vh] flex items-center justify-center">
+          <Spinner aria-label="Center-aligned spinner example" />
+        </div>
       )}
     </div>
   );

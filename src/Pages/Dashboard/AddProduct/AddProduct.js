@@ -81,6 +81,7 @@ const AddProduct = () => {
     <div>
       {role.role === "seller" ? (
         <div className="px-8 mx-auto">
+          <h2 className="py-3 text-2xl font-semibold">Add a Product </h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
@@ -217,10 +218,9 @@ const AddProduct = () => {
           <Toaster />
         </div>
       ) : (
-        // <div className="h-screen flex items-center justify-center">
-        //   <Spinner aria-label="Center-aligned spinner example" />
-        // </div>
-        <Error title={"Unauthorized Access "}></Error>
+        <div className="h-[60vh] flex items-center justify-center">
+          <Spinner aria-label="Center-aligned spinner example" />
+        </div>
       )}
     </div>
   );

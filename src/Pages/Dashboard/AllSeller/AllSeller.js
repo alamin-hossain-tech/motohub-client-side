@@ -77,9 +77,9 @@ const AllSeller = () => {
     <div>
       {role.role === "admin" ? (
         <div className="">
-          <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
-            All Sellers
-          </h2>
+          {data.length === 0 && (
+            <p className="text-center pt-5 h-[60vh]"> No Sellers yet</p>
+          )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
               {data.map((u, i) => (
@@ -148,7 +148,7 @@ const AllSeller = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <div className="h-screen flex items-center justify-center">
+        <div className="h-[60vh] flex items-center justify-center">
           <Spinner aria-label="Center-aligned spinner example" />
         </div>
       )}

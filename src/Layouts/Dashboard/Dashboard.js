@@ -73,7 +73,7 @@ const Dashboard = () => {
           </>
         )}
       </div>
-      <div className="container mx-auto py-5 h-[60vh]">
+      <div className="container mx-auto py-5">
         <Outlet></Outlet>
       </div>
       <FooterMain></FooterMain>
