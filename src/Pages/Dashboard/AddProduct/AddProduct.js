@@ -57,7 +57,7 @@ const AddProduct = () => {
             seller_location: data.location,
             status: "Available",
           };
-          fetch("http://localhost:5000/add-product", {
+          fetch("https://motohub-gules.vercel.app/add-product", {
             method: "POST",
             headers: {
               "content-type": "application/json",

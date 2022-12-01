@@ -5,7 +5,7 @@ const useVerify = (email) => {
   const [isVerifyLoading, setIsVerifyLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/verify/${email}`)
+      fetch(`https://motohub-gules.vercel.app/users/verify/${email}`)
         .then((res) => res.json())
         .then((data) => {
           setIsVerify(data.isVerify);

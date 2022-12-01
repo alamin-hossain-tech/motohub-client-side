@@ -18,14 +18,14 @@ const MyProducts = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch(`http://localhost:5000/products/${user.email}`).then((res) =>
-        res.json()
+      fetch(`https://motohub-gules.vercel.app/products/${user.email}`).then(
+        (res) => res.json()
       ),
   });
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
-      fetch(`http://localhost:5000/product/delete/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/product/delete/${id}`, {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
@@ -46,7 +46,7 @@ const MyProducts = () => {
     console.log(update);
 
     if (window.confirm("Are you sure want to Advertise?")) {
-      fetch(`http://localhost:5000/product/edit/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/product/edit/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

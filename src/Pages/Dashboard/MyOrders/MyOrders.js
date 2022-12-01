@@ -17,8 +17,8 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["order"],
     queryFn: () =>
-      fetch(`http://localhost:5000/order?email=${user.email}`).then((res) =>
-        res.json()
+      fetch(`https://motohub-gules.vercel.app/order?email=${user.email}`).then(
+        (res) => res.json()
       ),
   });
   console.log(data);
@@ -29,7 +29,7 @@ const MyOrders = () => {
     };
 
     if (window.confirm("Are you sure want to Advertise?")) {
-      fetch(`http://localhost:5000/product/edit/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/product/edit/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

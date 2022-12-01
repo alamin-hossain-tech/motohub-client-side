@@ -27,7 +27,7 @@ const CategorProduct = () => {
   };
   const { response, loading, error } = useAxios({
     method: "get",
-    url: `http://localhost:5000/products/category/${id}`,
+    url: `https://motohub-gules.vercel.app/products/category/${id}`,
     headers: JSON.stringify({
       headers: {
         authorization: ` Bearer ${localStorage.getItem("moto_token")}`,

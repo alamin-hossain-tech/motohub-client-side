@@ -17,7 +17,7 @@ const AllSeller = () => {
   } = useQuery({
     queryKey: ["users?role=seller"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=seller`).then((res) =>
+      fetch(`https://motohub-gules.vercel.app/users?role=seller`).then((res) =>
         res.json()
       ),
   });
@@ -28,7 +28,7 @@ const AllSeller = () => {
   });
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
-      fetch(`http://localhost:5000/users/delete/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/users/delete/${id}`, {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
@@ -44,7 +44,7 @@ const AllSeller = () => {
   };
   const handleUnVerify = (id) => {
     if (window.confirm("Are you sure want to Unverify?")) {
-      fetch(`http://localhost:5000/users/edit/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/users/edit/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "aplication/json",
@@ -59,7 +59,7 @@ const AllSeller = () => {
     }
   };
   const handleVerify = (id) => {
-    fetch(`http://localhost:5000/users/edit/${id}`, {
+    fetch(`https://motohub-gules.vercel.app/users/edit/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "aplication/json",

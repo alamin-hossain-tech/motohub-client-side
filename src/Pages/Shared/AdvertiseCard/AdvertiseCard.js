@@ -92,7 +92,7 @@ const AdvertiseCard = ({ product }) => {
       product_price: sell_price,
       order_date: new Date(),
     };
-    fetch("http://localhost:5000/order", {
+    fetch("https://motohub-gules.vercel.app/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",

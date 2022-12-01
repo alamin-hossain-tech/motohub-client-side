@@ -9,7 +9,7 @@ const Advertise = () => {
   const { logOut } = useContext(AuthContext);
   const { response, loading, error } = useAxios({
     method: "get",
-    url: `http://localhost:5000/products`,
+    url: `https://motohub-gules.vercel.app/products`,
     headers: JSON.stringify({
       headers: {
         authorization: ` Bearer ${localStorage.getItem("moto_token")}`,

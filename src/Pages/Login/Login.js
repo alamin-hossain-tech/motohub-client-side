@@ -51,7 +51,7 @@ const Login = () => {
       email: email,
       role: role,
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://motohub-gules.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

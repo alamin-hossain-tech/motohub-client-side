@@ -18,7 +18,9 @@ const AllBuyers = () => {
   } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
-      fetch(`http://localhost:5000/users?role=buyer`).then((res) => res.json()),
+      fetch(`https://motohub-gules.vercel.app/users?role=buyer`).then((res) =>
+        res.json()
+      ),
   });
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const AllBuyers = () => {
   });
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
-      fetch(`http://localhost:5000/users/delete/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/users/delete/${id}`, {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
