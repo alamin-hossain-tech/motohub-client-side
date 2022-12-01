@@ -145,7 +145,11 @@ const Register = () => {
                     value="Your Profile Image (max-width: 600px)"
                   />
                 </div>
-                <FileInput id="file" {...register("profile_image")} />
+                <FileInput
+                  required={true}
+                  id="file"
+                  {...register("profile_image")}
+                />
               </div>
             </div>
             <div id="select">

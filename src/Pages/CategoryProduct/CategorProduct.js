@@ -1,9 +1,8 @@
-import { Logout } from "@mui/icons-material";
 import { Button } from "@mui/material";
 
-import { Spinner, Tabs } from "flowbite-react";
-import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { Spinner } from "flowbite-react";
+import React, { useContext } from "react";
+import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
 import AdvertiseCard from "../Shared/AdvertiseCard/AdvertiseCard";
@@ -11,7 +10,6 @@ import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const CategorProduct = () => {
   const { logOut } = useContext(AuthContext);
-  const navigate = useNavigate();
   const id = useLoaderData();
   const getCategoryTitle = (id) => {
     if (+id === 1) {
@@ -38,7 +36,11 @@ const CategorProduct = () => {
     body: JSON.stringify({}),
   });
   if (loading) {
-    return <Spinner aria-label="Center-aligned spinner example" />;
+    return (
+      <div className="flex justify-center items-center h-72">
+        <Spinner aria-label="Center-aligned spinner example" />
+      </div>
+    );
   }
   if (error) {
     logOut().then().catch();
@@ -63,12 +65,12 @@ const CategorProduct = () => {
           </NavLink>
         </div>
       </div>
-      {/* {data.length === 0 && (
+      {response.length === 0 && (
         <div className=" h-72 flex justify-center items-center ">
           {" "}
-          <h2>No Products Found in this category</h2>
+          <h2>No Products available for this category</h2>
         </div>
-      )} */}
+      )}
       <div className=" py-5 grid grid-cols-4 gap-8 container mx-auto my-5">
         {response.map((product) => (
           <AdvertiseCard key={product._id} product={product}></AdvertiseCard>

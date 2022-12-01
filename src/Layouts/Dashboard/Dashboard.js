@@ -28,7 +28,7 @@ const Dashboard = () => {
     <div>
       <Header></Header>
       <TittleHeader title={"Dashboard"}></TittleHeader>
-      <div className="container border flex justify-center gap-12 mx-auto">
+      <div className="container border flex justify-center gap-12 mx-auto ">
         {userRole === "seller" && (
           <>
             <NavLink to="/dashboard/add-product">
@@ -73,7 +73,7 @@ const Dashboard = () => {
           </>
         )}
       </div>
-      <div className="container mx-auto py-5">
+      <div className="container mx-auto py-5 h-[60vh]">
         <Outlet></Outlet>
       </div>
       <FooterMain></FooterMain>

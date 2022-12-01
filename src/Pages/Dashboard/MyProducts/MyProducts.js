@@ -1,12 +1,14 @@
+import { Chip } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar, Button, Spinner } from "flowbite-react";
 import React, { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
+import { getTime } from "../../../Utility/getTime";
 
 const MyProducts = () => {
-  const { user, setBuyer } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [role] = useRole(user.email);
   const {
     data = [],
@@ -20,28 +22,6 @@ const MyProducts = () => {
       ),
   });
 
-  const getTime = (time) => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const dataTime = new Date(time);
-    let month = months[dataTime.getMonth()];
-    const year = dataTime.getFullYear();
-    const day = dataTime.getDate();
-    const date = day + ", " + month + " " + year;
-    return date;
-  };
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
       fetch(`http://localhost:5000/product/delete/${id}`, {
@@ -58,14 +38,24 @@ const MyProducts = () => {
     }
   };
   const handleAdvertise = (id) => {
+    const update = {
+      advertise: "true",
+      status: "Available",
+    };
+    console.log(update);
+
     if (window.confirm("Are you sure want to Advertise?")) {
       fetch(`http://localhost:5000/product/edit/${id}`, {
         method: "PUT",
         headers: {
-          "content-type": "aplication/json",
+          "content-type": "application/json",
         },
+        body: JSON.stringify(update),
       })
-        .then((res) => {
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+
           toast.success("Updated");
           refetch();
         })
@@ -134,22 +124,39 @@ const MyProducts = () => {
                     ${product.sell_price}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    {product.status}
+                    {product.status === "Sold" ? (
+                      <Chip label="Sold" color="error" variant="outlined" />
+                    ) : (
+                      <Chip
+                        label="Avilable"
+                        color="success"
+                        variant="outlined"
+                      />
+                    )}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
                     {getTime(product.published_time)}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 cursor-pointer">
-                    {product.advertise === "true" ? (
-                      <p className="font-semibold text-green-500">Advertised</p>
-                    ) : (
-                      <Button
-                        onClick={() => handleAdvertise(product._id)}
-                        className="mx-auto"
-                      >
-                        Advertise
-                      </Button>
-                    )}
+                    {product.status === "Available" &&
+                      product.advertise === "true" && (
+                        // <p className="font-semibold text-green-500"></p>
+                        <Chip label="Advertised" color="success" />
+                      )}
+                    {/* {product.advertise === "false" &&
+                      product.status === "Sold" && (
+                        // <p className="font-semibold text-green-500"></p>
+                        <Chip label="Soldout " color="info" />
+                      )} */}
+                    {product.advertise === "false" &&
+                      product.status === "Available" && (
+                        <Button
+                          onClick={() => handleAdvertise(product._id)}
+                          className="mx-auto"
+                        >
+                          Advertise
+                        </Button>
+                      )}
                   </td>
                   <td
                     onClick={() => handleDelete(product._id)}

@@ -29,6 +29,7 @@ import useVerify from "../../../Hooks/useVerify";
 import useRole from "../../../Hooks/useRole";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import { getTime } from "../../../Utility/getTime";
 
 const AdvertiseCard = ({ product }) => {
   const {
@@ -77,28 +78,6 @@ const AdvertiseCard = ({ product }) => {
   };
   const handleClose = () => setOpen(false);
 
-  const getTime = (time) => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const dataTime = new Date(time);
-    let month = months[dataTime.getMonth()];
-    const year = dataTime.getFullYear();
-    const day = dataTime.getDate();
-    const date = day + ", " + month + " " + year;
-    return date;
-  };
   const onSubmit = (data) => {
     setIsLoading(true);
     const order = {
@@ -110,6 +89,7 @@ const AdvertiseCard = ({ product }) => {
       product_image: product_image,
       product_id: _id,
       product_price: sell_price,
+      order_date: new Date(),
     };
     fetch("http://localhost:5000/order", {
       method: "POST",

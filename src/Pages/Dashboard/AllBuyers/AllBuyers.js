@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaLock } from "react-icons/fa";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
+import Error from "../../Shared/Error/Error";
 
 const AllBuyers = () => {
   const { user, setBuyer } = useContext(AuthContext);
@@ -105,9 +106,10 @@ const AllBuyers = () => {
           <Toaster></Toaster>
         </div>
       ) : (
-        <div className="h-screen flex items-center justify-center">
-          <Spinner aria-label="Center-aligned spinner example" />
-        </div>
+        // <div className="h-screen flex items-center justify-center">
+        //   <Spinner aria-label="Center-aligned spinner example" />
+        // </div>
+        <Error title={"Unauthorized Access"}></Error>
       )}
     </div>
   );

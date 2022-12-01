@@ -98,7 +98,7 @@ const AddProduct = () => {
                 <div className="mb-2 block">
                   <Label htmlFor="file" value="Add Product Image" />
                 </div>
-                <FileInput id="file" {...register("image")} />
+                <FileInput required={true} id="file" {...register("image")} />
               </div>
               <div id="brand">
                 <div className="mb-2 block">
