@@ -30,6 +30,7 @@ import useRole from "../../../Hooks/useRole";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { getTime } from "../../../Utility/getTime";
+import { FaPhone } from "react-icons/fa";
 
 const AdvertiseCard = ({ product }) => {
   const {
@@ -121,8 +122,9 @@ const AdvertiseCard = ({ product }) => {
         <CardMedia
           component="img"
           alt="green iguana"
-          height="140"
+          height="140px"
           image={product_image}
+          className="prdoct_card_img"
         />
         <div className="px-5">
           <Badge
@@ -155,7 +157,7 @@ const AdvertiseCard = ({ product }) => {
               <IoLocationSharp className="inline text-xl"></IoLocationSharp>{" "}
               {seller_location}
             </p>
-            <p className="">
+            <p className="py-1">
               <BsPerson className="inline text-xl"></BsPerson>
               {seller}
               {isVerify && (
@@ -166,7 +168,10 @@ const AdvertiseCard = ({ product }) => {
                 </Tooltip>
               )}
             </p>
-            <p>{seller_contact}</p>
+            <p>
+              <FaPhone className="inline mr-2"></FaPhone>
+              {seller_contact}
+            </p>
           </div>
         </CardContent>
         <div className="grid grid-cols-2 text-center  text-gray-600">

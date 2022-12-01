@@ -30,13 +30,13 @@ const Advertise = () => {
   return (
     <>
       {response.length > 0 && (
-        <div className="py-24 container mx-auto">
+        <div className="py-24 container mx-auto px-8 lg:px-0">
           <div>
             <h2 className="text-center  text-3xl font-bold">Popular Cars</h2>
             <p className="font-bold text-center pt-3 ">Get Your Ones</p>
             <HeadingDivider></HeadingDivider>
           </div>
-          <div className=" pt-5 grid grid-cols-4 gap-8">
+          <div className=" pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
             {response.map((product) => (
               <AdvertiseCard
                 key={product._id}

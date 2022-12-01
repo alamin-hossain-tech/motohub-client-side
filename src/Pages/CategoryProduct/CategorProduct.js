@@ -71,7 +71,7 @@ const CategorProduct = () => {
           <h2>No Products available for this category</h2>
         </div>
       )}
-      <div className=" py-5 grid grid-cols-4 gap-8 container mx-auto my-5">
+      <div className="pt-5 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-12 lg:gap-y-0 px-8 lg:px-0 container mx-auto my-5">
         {response.map((product) => (
           <AdvertiseCard key={product._id} product={product}></AdvertiseCard>
         ))}

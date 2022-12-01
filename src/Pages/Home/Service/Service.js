@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Service = () => {
   return (
-    <div className="container mx-auto grid grid-cols-4 gap-12 py-16 ">
+    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16 px-8 lg:px-0 ">
       <div className="  hover:shadow-lg hover:cursor-pointer h-72  p-12 text-center">
         <div className="flex justify-center">
           <div className="bg-blue-100 rounded-full p-5 ">

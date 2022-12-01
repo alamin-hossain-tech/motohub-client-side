@@ -147,15 +147,14 @@ const MyProducts = () => {
                         // <p className="font-semibold text-green-500"></p>
                         <Chip label="Advertised" color="success" />
                       )}
-                    {product.advertise === "false" &&
-                      product.status === "Available" && (
-                        <Button
-                          onClick={() => handleAdvertise(product._id)}
-                          className="mx-auto"
-                        >
-                          Advertise
-                        </Button>
-                      )}
+                    {product.status === "Available" && (
+                      <Button
+                        onClick={() => handleAdvertise(product._id)}
+                        className="mx-auto"
+                      >
+                        Advertise
+                      </Button>
+                    )}
                   </td>
                   <td
                     onClick={() => handleDelete(product._id)}

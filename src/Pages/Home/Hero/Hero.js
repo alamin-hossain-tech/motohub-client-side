@@ -10,8 +10,10 @@ const Hero = () => {
       }}
     >
       <h1 className="text-7xl  font-bold">Buy, Sell or Trade</h1>
-      <p>Find Your desire car as MotoHub makes it easy !</p>
-      <span className="bg-white text-black px-2 font-medium pb-1">
+      <p className="py-3 text-2xl font-medium">
+        Find Your desire car as MotoHub makes it easy !
+      </p>
+      <span className="bg-white text-black text-xl px-2 font-medium pb-1">
         Browse from numerious Cars.
       </span>
     </div>
