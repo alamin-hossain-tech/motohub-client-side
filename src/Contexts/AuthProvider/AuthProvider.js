@@ -9,6 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import useRole from "../../Hooks/useRole";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -16,8 +17,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [buyer, setBuyer] = useState([]);
-  const [seller, setSeller] = useState([]);
+
+  const [role, roleLoading] = useRole(user?.email);
 
   const providerLogin = (provider) => {
     setLoading(true);
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
     });
+    return () => unsubscribe();
   }, [user]);
 
   const authInfo = {
@@ -59,10 +61,8 @@ const AuthProvider = ({ children }) => {
     setLoading,
     user,
     loading,
-    buyer,
-    setBuyer,
-    seller,
-    setSeller,
+    role,
+    roleLoading,
   };
 
   return (

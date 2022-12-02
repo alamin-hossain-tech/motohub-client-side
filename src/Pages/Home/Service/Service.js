@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Service = () => {
   return (
@@ -16,8 +15,8 @@ const Service = () => {
         </div>
         <h4 className="text-lg font-bold py-3">ALL BRANDS</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
-          ducimus?
+          The car brands which focused on electric car technology seemed to
+          retain huge growth.
         </p>
       </div>
       <div className="  hover:shadow-lg hover:cursor-pointer h-72  p-12 text-center">
@@ -32,8 +31,8 @@ const Service = () => {
         </div>
         <h4 className="text-lg font-bold py-3">FREE SUPPORT</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
-          ducimus?
+          MotoHub serves providing access to free, 24/7 support via mediums
+          people already use and trust.
         </p>
       </div>
       <div className="  hover:shadow-lg hover:cursor-pointer h-72  p-12 text-center">
@@ -48,8 +47,8 @@ const Service = () => {
         </div>
         <h4 className="text-lg font-bold py-3">DEALERSHIP</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
-          ducimus?
+          Interested in dealership? MotHub has solution for that. Feel free to
+          contact with us
         </p>
       </div>
       <div className="  hover:shadow-lg hover:cursor-pointer h-72  p-12 text-center">
@@ -64,8 +63,8 @@ const Service = () => {
         </div>
         <h4 className="text-lg font-bold py-3">AFFORDABLE</h4>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint,
-          ducimus?
+          MotoHub provides quality service with AFFORDABLE deal. Do hurry up
+          before stock out.
         </p>
       </div>
     </div>

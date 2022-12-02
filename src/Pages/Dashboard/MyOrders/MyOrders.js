@@ -2,26 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Spinner } from "flowbite-react";
 import React, { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 import { getTime } from "../../../Utility/getTime";
-import Error from "../../Shared/Error/Error";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [role, loading] = useRole(user.email);
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data = [], refetch } = useQuery({
     queryKey: ["order"],
     queryFn: () =>
       fetch(`https://motohub-gules.vercel.app/order?email=${user.email}`).then(
         (res) => res.json()
       ),
   });
-  console.log(data);
+
   const handlePay = (id, orderId) => {
     const update = {
       advertise: "false",
@@ -29,7 +25,7 @@ const MyOrders = () => {
     };
 
     if (window.confirm("Are you sure want to Advertise?")) {
-      fetch(`https://motohub-gules.vercel.app/product/edit/${id}`, {
+      fetch(`https://motohub-gules.vercel.app/order/edit/${id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -48,7 +44,7 @@ const MyOrders = () => {
     }
   };
   if (loading) {
-    return <Spinner></Spinner>;
+    return <Spinner className="h-[70vh]"></Spinner>;
   }
   return (
     <div>
@@ -86,7 +82,7 @@ const MyOrders = () => {
               ))}
             </thead>
             <tbody className="flex-1 sm:flex-none">
-              {data.map((product, i) => (
+              {data.map((order, i) => (
                 <tr
                   key={i}
                   className="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"
@@ -97,30 +93,33 @@ const MyOrders = () => {
                   <td className="border-grey-light border hover:bg-gray-100 p-3">
                     <img
                       className="inline mr-2 rounded"
-                      src={product.product_image}
+                      src={order.product_image}
                       alt=""
                       width={"50px"}
                     />
-                    {product.product_name}
+                    {order.product_name}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    ${product.product_price}
+                    ${order.product_price}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
-                    {getTime(product.order_time || 1)}
+                    {getTime(order.order_date)}
                   </td>
                   <td className="border-grey-light border hover:bg-gray-100 p-3 cursor-pointer">
-                    {product.paid === true ? (
+                    {order.paid === true ? (
                       <p className="font-semibold text-green-500">Paid</p>
                     ) : (
-                      <Button
-                        onClick={() =>
-                          handlePay(product.product_id, product._id)
-                        }
-                        className="mx-auto"
-                      >
-                        Pay
-                      </Button>
+                      // <Button
+                      //   onClick={() =>
+                      //     handlePay(order.product_id, order._id)
+                      //   }
+                      //   className="mx-auto"
+                      // >
+                      //   Pay
+                      // </Button>
+                      <Link to={`/dashboard/payment/${order._id}`} c>
+                        <Button>Pay</Button>
+                      </Link>
                     )}
                   </td>
                 </tr>

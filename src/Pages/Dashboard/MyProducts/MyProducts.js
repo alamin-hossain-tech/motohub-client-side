@@ -1,21 +1,16 @@
 import { Chip } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { Avatar, Button, Spinner } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 import React, { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 import { getTime } from "../../../Utility/getTime";
-import Error from "../../Shared/Error/Error";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [role] = useRole(user.email);
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
       fetch(`https://motohub-gules.vercel.app/products/${user.email}`).then(

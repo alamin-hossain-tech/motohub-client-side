@@ -2,7 +2,6 @@ import {
   Button,
   FileInput,
   Label,
-  Radio,
   Select,
   Spinner,
   TextInput,
@@ -12,7 +11,6 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
-import Error from "../../Shared/Error/Error";
 
 const AddProduct = () => {
   const imghostkey = process.env.REACT_APP_imgbb;
@@ -23,7 +21,6 @@ const AddProduct = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     reset,
   } = useForm();

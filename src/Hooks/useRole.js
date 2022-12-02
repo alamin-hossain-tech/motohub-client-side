@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const useRole = (email) => {
   const [role, setRole] = useState("");
+  const [roleLoading, setRoleLoading] = useState("");
 
   useEffect(() => {
     if (email) {
@@ -15,7 +16,7 @@ const useRole = (email) => {
     }
   }, [email]);
 
-  return [role];
+  return [role, roleLoading];
 };
 
 export default useRole;

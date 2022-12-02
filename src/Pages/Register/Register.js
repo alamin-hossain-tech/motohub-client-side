@@ -15,6 +15,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useToken from "../../Hooks/useToken";
+import SetTabTitle from "../../Utility/SetTabTitle";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const Register = () => {
@@ -117,7 +118,7 @@ const Register = () => {
       })
       .catch((err) => console.log(err));
   };
-
+  SetTabTitle("Register");
   return (
     <div>
       <TittleHeader title={"Register"}></TittleHeader>

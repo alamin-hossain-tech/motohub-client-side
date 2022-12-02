@@ -14,23 +14,25 @@ import {
 import {} from "@mui/material/Icon";
 import { Button, Label, Spinner, TextInput } from "flowbite-react";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineCar } from "react-icons/ai";
 import { GrStatusGood } from "react-icons/gr";
-import { BsPerson } from "react-icons/bs";
+import { BsHeart, BsHeartFill, BsPerson } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { IoLocationSharp, IoPricetagsOutline } from "react-icons/io5";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { TbLicense } from "react-icons/tb";
 import { TiTick } from "react-icons/ti";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useVerify from "../../../Hooks/useVerify";
-import useRole from "../../../Hooks/useRole";
+
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { getTime } from "../../../Utility/getTime";
-import { FaPhone } from "react-icons/fa";
+import { FaHeart, FaPhone } from "react-icons/fa";
+import useAxios from "../../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const AdvertiseCard = ({ product }) => {
   const {
@@ -57,9 +59,8 @@ const AdvertiseCard = ({ product }) => {
   } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [isVerify] = useVerify(seller_email);
-  const { user } = useContext(AuthContext);
-  const [role] = useRole(user.email);
+  const [isVerify, isVerifyLoading] = useVerify(seller_email);
+  const { user, role, roleLoading } = useContext(AuthContext);
   const style = {
     position: "absolute",
     top: "50%",
@@ -115,6 +116,48 @@ const AdvertiseCard = ({ product }) => {
         }
       });
   };
+  const { data: wishlistData = [], refetch } = useQuery({
+    queryKey: ["users?role=buyer"],
+    queryFn: () =>
+      fetch(`http://localhost:5000/wishlist?email=${user.email}`).then((res) =>
+        res.json()
+      ),
+  });
+  const wishlist = wishlistData.find((w) => w.product_id === _id);
+  console.log(wishlist);
+
+  const handleWishList = (id) => {
+    const wishlist = {
+      customer_email: user.email,
+      product_id: id,
+      product_name: name,
+      product_price: sell_price,
+      product_image: product_image,
+    };
+    fetch("http://localhost:5000/wishlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishlist),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        refetch();
+      });
+  };
+
+  const undoWishList = (id) => {
+    fetch(`http://localhost:5000/wishlist/delete/${id}`, {
+      method: "post",
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        refetch();
+      });
+  };
 
   return (
     <>
@@ -126,7 +169,7 @@ const AdvertiseCard = ({ product }) => {
           image={product_image}
           className="prdoct_card_img"
         />
-        <div className="px-5">
+        <div className="px-5 flex justify-between">
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -147,6 +190,23 @@ const AdvertiseCard = ({ product }) => {
               sx={{ width: 56, height: 56 }}
             />
           </Badge>
+          {role.role === "buyer" && (
+            <div>
+              {wishlist?.product_id === _id ? (
+                <Tooltip title="Undo Wishlist">
+                  <IconButton onClick={() => undoWishList(wishlist?._id)}>
+                    <BsHeartFill className="inline text-lg text-red-500"></BsHeartFill>
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Add to Wishlist">
+                  <IconButton onClick={() => handleWishList(_id)}>
+                    <BsHeart className="inline text-lg text-red-500"></BsHeart>
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          )}
         </div>
         <CardContent className="text-center">
           <Typography gutterBottom variant="h5" component="div">
@@ -177,8 +237,8 @@ const AdvertiseCard = ({ product }) => {
         <div className="grid grid-cols-2 text-center  text-gray-600">
           <div className="border-t border-b border-r py-3">
             <p className="font-semibold">
-              <AiOutlineCar className="inline text-xl mr-2"></AiOutlineCar>Model
-              Year
+              <AiOutlineCar className="inline text-xl mr-2"></AiOutlineCar>
+              Model Year
             </p>
             <p>{model_year}</p>
           </div>
@@ -222,7 +282,11 @@ const AdvertiseCard = ({ product }) => {
             </p>
           </div>
         </div>
-
+        {(isVerifyLoading || roleLoading) && (
+          <div className="text-center py-4">
+            <Spinner className="text-center"></Spinner>
+          </div>
+        )}
         {isVerify && role.role === "buyer" && (
           <CardActions className="justify-center my-5">
             <Button onClick={handleOpen}>Book Now</Button>

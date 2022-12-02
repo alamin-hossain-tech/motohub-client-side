@@ -2,13 +2,15 @@ import { Button } from "@mui/material";
 
 import { Spinner } from "flowbite-react";
 import React, { useContext } from "react";
-import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
+import SetTabTitle from "../../Utility/SetTabTitle";
 import AdvertiseCard from "../Shared/AdvertiseCard/AdvertiseCard";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const CategorProduct = () => {
+  SetTabTitle("Products");
   const { logOut } = useContext(AuthContext);
   const id = useLoaderData();
   const getCategoryTitle = (id) => {
@@ -37,7 +39,7 @@ const CategorProduct = () => {
   });
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-72">
+      <div className="flex justify-center items-center h-[80vh]">
         <Spinner aria-label="Center-aligned spinner example" />
       </div>
     );

@@ -9,6 +9,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import useToken from "../../Hooks/useToken";
+import SetTabTitle from "../../Utility/SetTabTitle";
 import TittleHeader from "../Shared/TittleHeader/TittleHeader";
 
 const Login = () => {
@@ -84,6 +85,7 @@ const Login = () => {
         );
       });
   };
+  SetTabTitle("Login");
   return (
     <div>
       <TittleHeader title={"Login"}></TittleHeader>

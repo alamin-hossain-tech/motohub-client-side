@@ -1,8 +1,8 @@
 import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
-import { NavbarLink } from "flowbite-react/lib/esm/components/Navbar/NavbarLink";
+
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 import logo from "../../../Assets/Logo.svg";
@@ -34,8 +34,12 @@ const Header = () => {
     <div className="container mx-auto py-2">
       <Navbar fluid={true} rounded={true}>
         <Link to="/">
-          <img src={logo} className="mr-3 h-12 sm:h-9" alt="Flowbite Logo" />
-          <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
+          <img
+            src={logo}
+            className="mr-3 h-6 md:h-9 sm:h-9"
+            alt="Flowbite Logo"
+          />
+          <span className="self-center text-xl lg:text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
             MotoHub
           </span>
         </Link>

@@ -1,29 +1,28 @@
-import { Sidebar } from "flowbite-react";
-import React, { useContext, useState } from "react";
-import { FaUsers, FaRegMoneyBillAlt } from "react-icons/fa";
-import { BsShop } from "react-icons/bs";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import React, { useContext } from "react";
+
+import { NavLink, Outlet } from "react-router-dom";
 import FooterMain from "../../Pages/Shared/FooterMain/FooterMain";
 import Header from "../../Pages/Shared/Header/Header";
-import { AiOutlineCar } from "react-icons/ai";
 import useRole from "../../Hooks/useRole";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import {
-  Delete,
   DirectionsCarOutlined,
+  FavoriteBorder,
+  FavoriteBorderOutlined,
   Inventory2Outlined,
-  SellRounded,
   ShoppingBagOutlined,
   StorefrontOutlined,
 } from "@mui/icons-material";
 import TittleHeader from "../../Pages/Shared/TittleHeader/TittleHeader";
 import { Button } from "@mui/material";
+import SetTabTitle from "../../Utility/SetTabTitle";
+import { BsHeart } from "react-icons/bs";
 
 const Dashboard = () => {
-  const { user, buyer, seller } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [role] = useRole(user?.email);
   const userRole = role.role;
-
+  SetTabTitle("Dashboard");
   return (
     <div>
       <Header></Header>
@@ -68,6 +67,12 @@ const Dashboard = () => {
               <Button>
                 <Inventory2Outlined className="inline mr-2"></Inventory2Outlined>
                 My Orders
+              </Button>
+            </NavLink>
+            <NavLink to="/dashboard/my-wishlist">
+              <Button>
+                <FavoriteBorderOutlined className="inline mr-2"></FavoriteBorderOutlined>
+                My Wishlist
               </Button>
             </NavLink>
           </>

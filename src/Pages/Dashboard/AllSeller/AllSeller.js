@@ -10,11 +10,7 @@ import "./AllSeller.css";
 const AllSeller = () => {
   const { setSeller, user } = useContext(AuthContext);
   const [role] = useRole(user.email);
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data = [], refetch } = useQuery({
     queryKey: ["users?role=seller"],
     queryFn: () =>
       fetch(`https://motohub-gules.vercel.app/users?role=seller`).then((res) =>

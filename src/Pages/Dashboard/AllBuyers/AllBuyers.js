@@ -1,21 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { Checkbox, Spinner, Table } from "flowbite-react";
+import { Spinner } from "flowbite-react";
 import React, { useContext, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaLock } from "react-icons/fa";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
-import Error from "../../Shared/Error/Error";
 
 const AllBuyers = () => {
   const { user, setBuyer } = useContext(AuthContext);
   const [role] = useRole(user.email);
 
-  const {
-    data = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data = [], refetch } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
       fetch(`https://motohub-gules.vercel.app/users?role=buyer`).then((res) =>
