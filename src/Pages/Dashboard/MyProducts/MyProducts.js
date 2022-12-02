@@ -13,9 +13,11 @@ const MyProducts = () => {
   const { data = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch(`https://motohub-gules.vercel.app/products/${user.email}`).then(
-        (res) => res.json()
-      ),
+      fetch(`https://motohub-gules.vercel.app/products/${user.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   const handleDelete = (id) => {
@@ -24,6 +26,7 @@ const MyProducts = () => {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
       })
         .then((res) => {
@@ -45,6 +48,7 @@ const MyProducts = () => {
         method: "PUT",
         headers: {
           "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
         body: JSON.stringify(update),
       })
@@ -136,20 +140,21 @@ const MyProducts = () => {
                   <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
                     {getTime(product.published_time)}
                   </td>
-                  <td className="border-grey-light border hover:bg-gray-100 p-3 cursor-pointer">
+                  <td className="border-grey-light border hover:bg-gray-100 p-3 cursor-pointer text-center">
                     {product.status === "Available" &&
                       product.advertise === "true" && (
                         // <p className="font-semibold text-green-500"></p>
                         <Chip label="Advertised" color="success" />
                       )}
-                    {product.status === "Available" && (
-                      <Button
-                        onClick={() => handleAdvertise(product._id)}
-                        className="mx-auto"
-                      >
-                        Advertise
-                      </Button>
-                    )}
+                    {product.status === "Available" &&
+                      product.advertise !== "true" && (
+                        <Button
+                          onClick={() => handleAdvertise(product._id)}
+                          className="mx-auto"
+                        >
+                          Advertise
+                        </Button>
+                      )}
                   </td>
                   <td
                     onClick={() => handleDelete(product._id)}

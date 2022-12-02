@@ -6,7 +6,11 @@ const useRole = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`https://motohub-gules.vercel.app/users/role/${email}`)
+      fetch(`https://motohub-gules.vercel.app/users/role/${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data) {

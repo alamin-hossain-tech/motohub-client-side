@@ -13,9 +13,11 @@ const AllSeller = () => {
   const { data = [], refetch } = useQuery({
     queryKey: ["users?role=seller"],
     queryFn: () =>
-      fetch(`https://motohub-gules.vercel.app/users?role=seller`).then((res) =>
-        res.json()
-      ),
+      fetch(`https://motohub-gules.vercel.app/users?role=seller`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      }).then((res) => res.json()),
   });
   useEffect(() => {
     if (data) {
@@ -28,6 +30,7 @@ const AllSeller = () => {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
         body: JSON.stringify(id),
       })
@@ -45,6 +48,7 @@ const AllSeller = () => {
         headers: {
           "content-type": "aplication/json",
           verify: "false",
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
       })
         .then((res) => {
@@ -60,6 +64,7 @@ const AllSeller = () => {
       headers: {
         "content-type": "aplication/json",
         verify: "true",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
     })
       .then((res) => {

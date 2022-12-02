@@ -87,6 +87,15 @@ export const routes = createBrowserRouter([
       {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(
+            `https://motohub-alamin-merndev.vercel.app/order?id=${params.id}`,
+            {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("moto_token")}`,
+              },
+            }
+          ),
       },
     ],
   },

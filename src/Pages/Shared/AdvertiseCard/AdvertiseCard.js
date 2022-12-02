@@ -83,9 +83,9 @@ const AdvertiseCard = ({ product }) => {
   const onSubmit = (data) => {
     setIsLoading(true);
     const order = {
-      customer_name: user.displayName,
+      customer_name: user?.displayName,
       customer_phone: data.customer_phone,
-      customer_email: user.email,
+      customer_email: user?.email,
       meeting_location: data.meeting_location,
       product_name: name,
       product_image: product_image,
@@ -97,6 +97,7 @@ const AdvertiseCard = ({ product }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
       body: JSON.stringify(order),
     })
@@ -119,24 +120,30 @@ const AdvertiseCard = ({ product }) => {
   const { data: wishlistData = [], refetch } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
-      fetch(`http://localhost:4000/wishlist?email=${user.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://motohub-alamin-merndev.vercel.app/wishlist?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("moto_token")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
   const wishlist = wishlistData.find((w) => w.product_id === _id);
 
   const handleWishList = (id) => {
     const wishlist = {
-      customer_email: user.email,
+      customer_email: user?.email,
       product_id: id,
       product_name: name,
       product_price: sell_price,
       product_image: product_image,
     };
-    fetch("http://localhost:4000/wishlist", {
+    fetch("https://motohub-alamin-merndev.vercel.app/wishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
       body: JSON.stringify(wishlist),
     })
@@ -148,8 +155,11 @@ const AdvertiseCard = ({ product }) => {
   };
 
   const undoWishList = (id) => {
-    fetch(`http://localhost:4000/wishlist/delete/${id}`, {
+    fetch(`https://motohub-alamin-merndev.vercel.app/wishlist/delete/${id}`, {
       method: "post",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
+      },
     })
       .then((res) => res.json())
       .then((result) => {
@@ -312,7 +322,7 @@ const AdvertiseCard = ({ product }) => {
                   id="name"
                   type="text"
                   placeholder=""
-                  defaultValue={user.displayName}
+                  defaultValue={user?.displayName}
                   disabled={true}
                   {...register("name")}
                 />
@@ -324,7 +334,7 @@ const AdvertiseCard = ({ product }) => {
                 <TextInput
                   type="text"
                   placeholder=""
-                  defaultValue={user.email}
+                  defaultValue={user?.email}
                   disabled={true}
                   {...register("email")}
                 />

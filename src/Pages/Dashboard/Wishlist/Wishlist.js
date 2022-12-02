@@ -13,9 +13,14 @@ const Wishlist = () => {
   const { data: wishlistData = [], refetch } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
-      fetch(`http://localhost:4000/wishlist?email=${user.email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://motohub-alamin-merndev.vercel.app/wishlist?email=${user.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("moto_token")}`,
+          },
+        }
+      ).then((res) => res.json()),
   });
   console.log(wishlistData);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +53,7 @@ const Wishlist = () => {
   const onSubmit = (data) => {
     setIsLoading(true);
     const order = {
-      customer_name: user.displayName,
+      customer_name: user?.displayName,
       customer_phone: data.customer_phone,
       customer_email: user.email,
       meeting_location: data.meeting_location,
@@ -62,6 +67,7 @@ const Wishlist = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
       body: JSON.stringify(order),
     })
@@ -157,7 +163,7 @@ const Wishlist = () => {
                                 id="name"
                                 type="text"
                                 placeholder=""
-                                defaultValue={user.displayName}
+                                defaultValue={user?.displayName}
                                 disabled={true}
                                 {...register("name")}
                               />

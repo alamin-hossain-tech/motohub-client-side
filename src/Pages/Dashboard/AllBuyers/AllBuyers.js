@@ -12,9 +12,11 @@ const AllBuyers = () => {
   const { data = [], refetch } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
-      fetch(`https://motohub-gules.vercel.app/users?role=buyer`).then((res) =>
-        res.json()
-      ),
+      fetch(`https://motohub-gules.vercel.app/users?role=buyer`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const AllBuyers = () => {
         method: "POST",
         headers: {
           "content-type": "aplication/json",
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
         body: JSON.stringify(id),
       })

@@ -13,9 +13,11 @@ const MyOrders = () => {
   const { data = [], refetch } = useQuery({
     queryKey: ["order"],
     queryFn: () =>
-      fetch(`https://motohub-gules.vercel.app/order?email=${user.email}`).then(
-        (res) => res.json()
-      ),
+      fetch(`https://motohub-gules.vercel.app/order?email=${user.email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      }).then((res) => res.json()),
   });
 
   const handlePay = (id, orderId) => {
@@ -30,6 +32,7 @@ const MyOrders = () => {
         headers: {
           "content-type": "application/json",
           id: orderId,
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
         },
         body: JSON.stringify(update),
       })

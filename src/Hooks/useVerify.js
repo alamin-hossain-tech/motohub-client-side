@@ -6,7 +6,11 @@ const useVerify = (email) => {
   useEffect(() => {
     if (email) {
       setIsVerifyLoading(true);
-      fetch(`https://motohub-gules.vercel.app/users/verify/${email}`)
+      fetch(`https://motohub-gules.vercel.app/users/verify/${email}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("moto_token")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setIsVerify(data.isVerify);

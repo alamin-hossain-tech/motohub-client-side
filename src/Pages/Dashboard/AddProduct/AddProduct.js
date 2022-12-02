@@ -44,7 +44,7 @@ const AddProduct = () => {
             reg_year: data.reg_year,
             buy_price: data.buy_price,
             sell_price: data.sell_price,
-            seller: user.displayName,
+            seller: user?.displayName,
             seller_email: user.email,
             seller_image: user.photoURL,
             category: data.category,
@@ -58,6 +58,7 @@ const AddProduct = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("moto_token")}`,
             },
             body: JSON.stringify(product),
           })

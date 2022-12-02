@@ -94,6 +94,7 @@ const Register = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
       body: JSON.stringify(user),
     })
@@ -112,7 +113,7 @@ const Register = () => {
       .then((res) => {
         const user = res.user;
         setCreatedEmail(user.email);
-        saveUser(user.displayName, user.email, "buyer");
+        saveUser(user?.displayName, user.email, "buyer");
         toast.success("Succesfully Logged in");
         // navigate(from, { replace: true });
       })

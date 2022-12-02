@@ -39,7 +39,7 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setCreatedEmail(user.email);
-        saveUser(user.displayName, user.email, "buyer");
+        saveUser(user?.displayName, user.email, "buyer");
         toast.success("Succesfully Logged in");
         // navigate(from, { replace: true });
       })
@@ -56,6 +56,7 @@ const Login = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("moto_token")}`,
       },
       body: JSON.stringify(user),
     })
@@ -70,7 +71,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then((res) => {
         setCreatedEmail(res.user.email);
-        saveUser(res.user.displayName, res.user.email, "buyer");
+        saveUser(res.user?.displayName, res.user.email, "buyer");
         setLoading(false);
         reset();
         toast.success("Successfully logged in!");
