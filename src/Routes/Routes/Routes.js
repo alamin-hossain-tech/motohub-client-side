@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Layouts/Dashboard/Dashboard";
 import Main from "../../Layouts/Main/Main";
+import Blog from "../../Pages/Blog/Blog";
 import CategorProduct from "../../Pages/CategoryProduct/CategorProduct";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
@@ -40,6 +41,10 @@ export const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) => params.id,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "*",

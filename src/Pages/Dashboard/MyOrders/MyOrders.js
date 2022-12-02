@@ -117,7 +117,7 @@ const MyOrders = () => {
                       // >
                       //   Pay
                       // </Button>
-                      <Link to={`/dashboard/payment/${order._id}`} c>
+                      <Link to={`/dashboard/payment/${order._id}`}>
                         <Button>Pay</Button>
                       </Link>
                     )}

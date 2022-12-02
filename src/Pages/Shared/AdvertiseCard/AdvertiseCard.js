@@ -119,12 +119,11 @@ const AdvertiseCard = ({ product }) => {
   const { data: wishlistData = [], refetch } = useQuery({
     queryKey: ["users?role=buyer"],
     queryFn: () =>
-      fetch(`http://localhost:5000/wishlist?email=${user.email}`).then((res) =>
+      fetch(`http://localhost:4000/wishlist?email=${user.email}`).then((res) =>
         res.json()
       ),
   });
   const wishlist = wishlistData.find((w) => w.product_id === _id);
-  console.log(wishlist);
 
   const handleWishList = (id) => {
     const wishlist = {
@@ -134,7 +133,7 @@ const AdvertiseCard = ({ product }) => {
       product_price: sell_price,
       product_image: product_image,
     };
-    fetch("http://localhost:5000/wishlist", {
+    fetch("http://localhost:4000/wishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -149,7 +148,7 @@ const AdvertiseCard = ({ product }) => {
   };
 
   const undoWishList = (id) => {
-    fetch(`http://localhost:5000/wishlist/delete/${id}`, {
+    fetch(`http://localhost:4000/wishlist/delete/${id}`, {
       method: "post",
     })
       .then((res) => res.json())
