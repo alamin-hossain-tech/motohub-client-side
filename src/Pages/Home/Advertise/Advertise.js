@@ -7,7 +7,11 @@ import HeadingDivider from "../../Shared/HeadingDivider/HeadingDivider";
 
 const Advertise = () => {
   const { logOut } = useContext(AuthContext);
-  const { response, loading, error } = useAxios({
+  const {
+    response = [],
+    loading,
+    error,
+  } = useAxios({
     method: "get",
     url: `https://motohub-gules.vercel.app/products`,
     headers: JSON.stringify({
@@ -29,7 +33,7 @@ const Advertise = () => {
   }
   return (
     <>
-      {response.length > 0 && (
+      {response?.length > 0 && (
         <div className="py-24 container mx-auto px-8 lg:px-0">
           <div>
             <h2 className="text-center  text-3xl font-bold">Popular Cars</h2>

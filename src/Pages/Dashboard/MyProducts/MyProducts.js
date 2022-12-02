@@ -67,7 +67,7 @@ const MyProducts = () => {
     <div>
       {role.role === "seller" ? (
         <div>
-          {data.length === 0 && (
+          {data?.length === 0 && (
             <p className="text-center pt-5 h-[60vh]">
               {" "}
               You have no Product yet

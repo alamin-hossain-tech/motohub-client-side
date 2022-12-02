@@ -78,7 +78,7 @@ const AllSeller = () => {
     <div>
       {role.role === "admin" ? (
         <div className="">
-          {data.length === 0 && (
+          {data?.length === 0 && (
             <p className="text-center pt-5 h-[60vh]"> No Sellers yet</p>
           )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
