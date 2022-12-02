@@ -22,7 +22,7 @@ const Wishlist = () => {
         }
       ).then((res) => res.json()),
   });
-  console.log(wishlistData);
+
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const style = {
@@ -97,7 +97,7 @@ const Wishlist = () => {
           )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
-              {wishlistData.map((p, i) => (
+              {wishlistData?.map((p, i) => (
                 <tr
                   key={i}
                   className="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0"
@@ -119,7 +119,7 @@ const Wishlist = () => {
               ))}
             </thead>
             <tbody className="flex-1 sm:flex-none">
-              {wishlistData.map((order, i) => (
+              {wishlistData?.map((order, i) => (
                 <tr
                   key={i}
                   className="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"

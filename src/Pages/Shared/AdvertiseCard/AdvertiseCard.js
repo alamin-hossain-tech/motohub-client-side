@@ -129,7 +129,7 @@ const AdvertiseCard = ({ product }) => {
         }
       ).then((res) => res.json()),
   });
-  const wishlist = wishlistData.find((w) => w.product_id === _id);
+  const wishlist = wishlistData?.find((w) => w.product_id === _id);
 
   const handleWishList = (id) => {
     const wishlist = {
@@ -149,7 +149,6 @@ const AdvertiseCard = ({ product }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         refetch();
       });
   };
@@ -163,7 +162,6 @@ const AdvertiseCard = ({ product }) => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         refetch();
       });
   };

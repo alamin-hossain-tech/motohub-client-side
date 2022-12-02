@@ -41,7 +41,6 @@ const MyProducts = () => {
       advertise: "true",
       status: "Available",
     };
-    console.log(update);
 
     if (window.confirm("Are you sure want to Advertise?")) {
       fetch(`https://motohub-gules.vercel.app/product/edit/${id}`, {
@@ -54,8 +53,6 @@ const MyProducts = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
-
           toast.success("Updated");
           refetch();
         })

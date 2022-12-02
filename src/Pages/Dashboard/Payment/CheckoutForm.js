@@ -7,7 +7,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const CheckoutForm = ({ order }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const { product_price, customer_email, _id, product_id } = order;
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
@@ -52,7 +52,6 @@ const CheckoutForm = ({ order }) => {
     });
 
     if (error) {
-      console.log(error);
       setCardError(error.message);
     } else {
       setCardError("");
@@ -75,7 +74,6 @@ const CheckoutForm = ({ order }) => {
       return;
     }
     if (paymentIntent.status === "succeeded") {
-      console.log("card info", card);
       // store payment info in the database
       const payment = {
         price: price,
