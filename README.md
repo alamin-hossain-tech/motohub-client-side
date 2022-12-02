@@ -11,3 +11,7 @@
 ### 4. Add to wishlist feature implemented for product card.
 
 ### 5. Stripe Payment System integrated.
+
+adminEmail: alamin@gmail.com
+
+adminPassword: 123456789Ab
