@@ -6,7 +6,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useRole from "../../../Hooks/useRole";
 
 const AllBuyers = () => {
-  const { user, setBuyer } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [role] = useRole(user.email);
 
   const { data = [], refetch } = useQuery({
@@ -19,11 +19,6 @@ const AllBuyers = () => {
       }).then((res) => res.json()),
   });
 
-  useEffect(() => {
-    if (data) {
-      setBuyer(data);
-    }
-  });
   const handleDelete = (id) => {
     if (window.confirm("Are you sure want to delete?")) {
       fetch(`https://motohub-gules.vercel.app/users/delete/${id}`, {
@@ -45,13 +40,12 @@ const AllBuyers = () => {
     <div>
       {role.role === "admin" ? (
         <div>
-          <h2 className="pt-8 pb-2 text-center text-2xl font-semibold">
-            All Buyers
-          </h2>
-          {<p className="text-center pt-5 h-[60vh]"> No Buyers yet</p>}
+          {data?.lengh === 0 && (
+            <p className="text-center pt-5 h-[60vh]"> No Buyers yet</p>
+          )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">
-              {data.map((u, i) => (
+              {data?.map((u, i) => (
                 <tr
                   key={i}
                   className="bg-blue-600 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0"
@@ -76,7 +70,7 @@ const AllBuyers = () => {
               ))}
             </thead>
             <tbody className="flex-1 sm:flex-none">
-              {data.map((user, i) => (
+              {data?.map((user, i) => (
                 <tr
                   key={i}
                   className="flex flex-col flex-no wrap sm:table-row my-2 sm:mb-0"

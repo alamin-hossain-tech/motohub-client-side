@@ -11,7 +11,7 @@ import SetTabTitle from "../../Utility/SetTabTitle";
 const Home = () => {
   SetTabTitle("Home");
   return (
-    <div>
+    <div className="bg-white">
       <Hero></Hero>
       <Advertise></Advertise>
       <Category></Category>

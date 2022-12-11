@@ -34,7 +34,7 @@ const Advertise = () => {
   return (
     <>
       {response?.length > 0 && (
-        <div className="py-24 container mx-auto px-8 lg:px-0">
+        <div className="py-24 container mx-auto px-8 lg:px-0 bg-white">
           <div>
             <h2 className="text-center  text-3xl font-bold">Popular Cars</h2>
             <p className="font-bold text-center pt-3 ">Get Your Ones</p>
