@@ -24,7 +24,7 @@ const Dashboard = () => {
   const userRole = role.role;
   SetTabTitle("Dashboard");
   return (
-    <div>
+    <div className="bg-white">
       <Header></Header>
       <TittleHeader title={"Dashboard"}></TittleHeader>
       <div className="container border flex justify-center gap-12 mx-auto ">

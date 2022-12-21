@@ -93,7 +93,10 @@ const Wishlist = () => {
       {role.role === "buyer" ? (
         <div>
           {wishlistData?.length === 0 && (
-            <p className="text-center pt-5 h-[60vh]"> You have wishlist yet</p>
+            <p className="text-center pt-5 h-[60vh]">
+              {" "}
+              You have no wishlist yet
+            </p>
           )}
           <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-md overflow-hidden sm:shadow my-5">
             <thead className="text-white">

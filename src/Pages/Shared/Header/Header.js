@@ -31,7 +31,7 @@ const Header = () => {
     }
   };
   return (
-    <div className="container mx-auto py-2">
+    <div className="container mx-auto py-">
       <Navbar fluid={true} rounded={true}>
         <Link to="/">
           <img

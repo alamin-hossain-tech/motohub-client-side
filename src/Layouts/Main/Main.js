@@ -5,7 +5,7 @@ import Header from "../../Pages/Shared/Header/Header";
 
 const Main = () => {
   return (
-    <div>
+    <div className="bg-white">
       <Header></Header>
       <Outlet></Outlet>
       <FooterMain></FooterMain>
