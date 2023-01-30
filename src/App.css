@@ -41,3 +41,42 @@
   color: rgb(37 99 235);
   border-bottom: 2px solid rgb(37 99 235);
 }
+
+/* .swiper-button-prev {
+  top: -50px !important;
+  z-index: 100;
+} */
+
+.mySwiperCarCard {
+  padding: 50px 2px 50px 2px !important;
+}
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+}
+.swiper-pagination-bullet-active {
+  width: 25px !important;
+  border-radius: 15px !important;
+}
+
+.bg {
+  background-image: url("https://i.ibb.co/JR9cbqz/gray-abstract-wireframe-technology-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* position: relative; */
+  /* isolation: isolate; */
+}
+/* .bg::after {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background: #000;
+  background: #fff;
+  z-index: -1;
+  opacity: 0.05;
+} */
+
+.clip_path {
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}

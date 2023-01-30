@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "./Contexts/AuthProvider/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 const queryClient = new QueryClient();
 
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <App />
+        <ParallaxProvider>
+          <App />
+        </ParallaxProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

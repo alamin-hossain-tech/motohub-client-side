@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
 
 import HeadingDivider from "../../Shared/HeadingDivider/HeadingDivider";
 
 const Category = () => {
+  AOS.init();
   return (
-    <div className="container mx-auto py-16 px-8 lg:px-0">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1500"
+      data-aos-anchor-placement=" bottom-center"
+      className="container mx-auto py-16 px-8 lg:px-0"
+    >
       <h2 className="text-3xl font-bold text-center "> Popular Makers</h2>
       <p className=" font-bold text-center pt-3"> Choose wisely</p>
       <HeadingDivider></HeadingDivider>

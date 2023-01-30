@@ -3,9 +3,23 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useAxios from "../../../Hooks/useAxios";
 import AdvertiseCard from "../../Shared/AdvertiseCard/AdvertiseCard";
-import HeadingDivider from "../../Shared/HeadingDivider/HeadingDivider";
+
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+
+// Import Swiper React components
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/free-mode";
+
+import { Navigation } from "swiper";
 
 const Advertise = () => {
+  AOS.init();
   const { logOut } = useContext(AuthContext);
   const {
     response = [],
@@ -31,22 +45,38 @@ const Advertise = () => {
   if (error) {
     logOut().then().catch();
   }
+
   return (
     <>
       {response?.length > 0 && (
-        <div className="py-24 container mx-auto px-8 lg:px-0 bg-white">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1500"
+          data-aos-anchor-placement=" bottom"
+          className="py-24 container mx-auto px-8 lg:px-0 bg-white"
+        >
           <div>
-            <h2 className="text-center  text-3xl font-bold">Popular Cars</h2>
-            <p className="font-bold text-center pt-3 ">Get Your Ones</p>
-            <HeadingDivider></HeadingDivider>
+            <h2 className=" text-center text-4xl font-semibold">
+              Featured Cars
+            </h2>
           </div>
-          <div className=" pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
-            {response.map((product) => (
-              <AdvertiseCard
-                key={product._id}
-                product={product}
-              ></AdvertiseCard>
-            ))}
+
+          <div className=" relative">
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={30}
+              loop={true}
+              navigation={true}
+              modules={[Navigation]}
+              className="mySwiperCarCard"
+            >
+              <div className=""></div>
+              {response.map((product) => (
+                <SwiperSlide key={product._id}>
+                  <AdvertiseCard product={product}></AdvertiseCard>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       )}

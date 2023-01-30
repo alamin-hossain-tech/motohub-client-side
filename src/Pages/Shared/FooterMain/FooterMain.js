@@ -5,7 +5,7 @@ import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 import { Link } from "react-router-dom";
 const FooterMain = () => {
   return (
-    <Footer container={true} className="bg-gray-200 mt-5 ">
+    <Footer container={true} className="bg-gray-200  ">
       <div className="container mx-auto py-7">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div className="w-28 lg:w-24 pb-5 md:pb-0">

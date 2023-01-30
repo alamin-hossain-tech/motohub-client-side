@@ -1,21 +1,42 @@
 import React from "react";
+import "./Hero.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Hero = () => {
+  AOS.init();
   return (
     <div
-      className=" text-white text-center py-72"
+      className=" relative "
       style={{
-        backgroundImage: `url("https://motoro.wpsixer.com/motoro-spide/wp-content/uploads/2019/12/banner-bg.png")`,
-        backgroundSize: "cover",
+        backgroundImage: `url("https://i.ibb.co/48mwn2z/blob-haikei-6.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "top right",
+        backgroundSize: "contain",
       }}
     >
-      <h1 className="text-7xl  font-bold">Buy, Sell or Trade</h1>
-      <p className="py-3 text-2xl font-medium">
-        Find Your desire car as MotoHub makes it easy !
-      </p>
-      <span className="bg-white text-black text-xl px-2 font-medium pb-1">
-        Browse from numerious Cars.
-      </span>
+      <div className="container mx-auto items-center flex py-40">
+        <div className="w/12">
+          <h4 className="text-xl font-bold text-blue-600">
+            Welcome to MotoHub
+          </h4>
+          <h1 className="text-7xl  font-bold after:absolute background-text after:left-10 after:w-1/2 -z-10 after:text-[120px] after:opacity-5 after:text-blue-600 after:translate-y--1/2 ">
+            Buy, Sell or Trade
+          </h1>
+          <p className="py-3 text-2xl font-medium">
+            Find Your desire car as MotoHub makes it easy !
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://i.ibb.co/kGz4cbg/removal-ai-tmp-63d2b13280a3e.png"
+            alt="car_image"
+            className="w-full"
+            data-aos="fade-left"
+            data-aos-duration="1500"
+          />
+        </div>
+      </div>
     </div>
   );
 };

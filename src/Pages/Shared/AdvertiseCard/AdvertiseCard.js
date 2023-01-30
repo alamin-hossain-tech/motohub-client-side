@@ -6,6 +6,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Divider,
   IconButton,
   Modal,
   Tooltip,
@@ -20,7 +21,8 @@ import { GrStatusGood } from "react-icons/gr";
 import { BsHeart, BsHeartFill, BsPerson } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { IoLocationSharp, IoPricetagsOutline } from "react-icons/io5";
-import { MdOutlinePriceChange } from "react-icons/md";
+import { SlSpeedometer } from "react-icons/sl";
+import { GiGasPump, GiGearStickPattern } from "react-icons/gi";
 import { TbLicense } from "react-icons/tb";
 import { TiTick } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
@@ -169,13 +171,32 @@ const AdvertiseCard = ({ product }) => {
   return (
     <>
       <Card>
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          height="140px"
-          image={product_image}
-          className="prdoct_card_img"
-        />
+        <div className="relative">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="140px"
+            image={product_image}
+            className="prdoct_card_img "
+          />
+          {
+            <div className="absolute top-2 right-2">
+              {wishlist?.product_id === _id ? (
+                <Tooltip title="Undo Wishlist">
+                  <IconButton onClick={() => undoWishList(wishlist?._id)}>
+                    <BsHeartFill className="inline text-lg text-red-500"></BsHeartFill>
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Add to Wishlist">
+                  <IconButton onClick={() => handleWishList(_id)}>
+                    <BsHeart className="inline text-lg text-red-500"></BsHeart>
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          }
+        </div>
         <div className="px-5 flex justify-between">
           <Badge
             overlap="circular"
@@ -192,56 +213,47 @@ const AdvertiseCard = ({ product }) => {
             className="-mt-7"
           >
             <Avatar
-              alt="Travis Howard"
+              alt={seller}
               src={seller_image}
               sx={{ width: 56, height: 56 }}
             />
           </Badge>
-          {role.role === "buyer" && (
-            <div>
-              {wishlist?.product_id === _id ? (
-                <Tooltip title="Undo Wishlist">
-                  <IconButton onClick={() => undoWishList(wishlist?._id)}>
-                    <BsHeartFill className="inline text-lg text-red-500"></BsHeartFill>
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Add to Wishlist">
-                  <IconButton onClick={() => handleWishList(_id)}>
-                    <BsHeart className="inline text-lg text-red-500"></BsHeart>
-                  </IconButton>
-                </Tooltip>
-              )}
-            </div>
-          )}
         </div>
-        <CardContent className="text-center">
-          <Typography gutterBottom variant="h5" component="div">
-            {name}
-          </Typography>
-          <div className="text-center text-gray-500">
-            <p className="font-semibold">
-              <IoLocationSharp className="inline text-xl"></IoLocationSharp>{" "}
-              {seller_location}
-            </p>
-            <p className="py-1">
-              <BsPerson className="inline text-xl"></BsPerson>
-              {seller}
-              {isVerify && (
-                <Tooltip title="Verified Seller" placement="top">
-                  <IconButton>
-                    <TiTick className="text-white text-base bg-blue-600 rounded-full inline"></TiTick>
-                  </IconButton>
-                </Tooltip>
-              )}
-            </p>
-            <p>
-              <FaPhone className="inline mr-2"></FaPhone>
-              {seller_contact}
-            </p>
+        <CardContent className="">
+          <Typography gutterBottom variant="h5" component="div"></Typography>
+          <h4 className="font-bold text-xl">{name}</h4>
+          <div>
+            <h4 className="text-lg text-blue-600 font-medium">${sell_price}</h4>
           </div>
+          <Divider className="py-3" />
+          <div className="pt-5 flex justify-between">
+            <div className="flex items-center gap-3">
+              <SlSpeedometer
+                className="inline text-blue-600"
+                size={"25px"}
+              ></SlSpeedometer>
+              <span>20K</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <GiGearStickPattern
+                className="inline text-blue-600"
+                size={"25px"}
+              ></GiGearStickPattern>
+              <span>Auto</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <GiGasPump
+                className="inline text-blue-600"
+                size={"25px"}
+              ></GiGasPump>
+              <span>Petrol</span>
+            </div>
+          </div>
+          <Button className="mt-5 w-full" onClick={handleOpen}>
+            Book Now
+          </Button>
         </CardContent>
-        <div className="grid grid-cols-2 text-center  text-gray-600">
+        {/* <div className="grid grid-cols-2 text-center  text-gray-600">
           <div className="border-t border-b border-r py-3">
             <p className="font-semibold">
               <AiOutlineCar className="inline text-xl mr-2"></AiOutlineCar>
@@ -288,17 +300,9 @@ const AdvertiseCard = ({ product }) => {
               </span>
             </p>
           </div>
-        </div>
-        {(isVerifyLoading || roleLoading) && (
-          <div className="text-center py-4">
-            <Spinner className="text-center"></Spinner>
-          </div>
-        )}
-        {isVerify && role.role === "buyer" && (
-          <CardActions className="justify-center my-5">
-            <Button onClick={handleOpen}>Book Now</Button>
-          </CardActions>
-        )}
+        </div> */}
+
+        {}
       </Card>
 
       {/* Buying Modal  */}
