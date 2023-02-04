@@ -6,7 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
+import "swiper/css/free-mode";
+import { Navigation } from "swiper";
 import {
   BsFillPlayFill,
   BsHeart,
@@ -81,15 +82,17 @@ const Testimonial = () => {
           </div>
         </div>
         <div className="container relative mx-auto">
-          <div className="w-[600px]  bg-white absolute -bottom-36  rounded shadow ">
+          <div className="w-[600px] absolute -bottom-36  ">
             <Swiper
               slidesPerView={1}
-              spaceBetween={30}
+              // spaceBetween={30}
               loop={true}
+              navigation={true}
+              modules={[Navigation]}
               className="testimonial-swiper"
             >
-              <SwiperSlide className="">
-                <div className="h-full px-10 py-6 hover:cursor-pointer bg-neutral-200">
+              <SwiperSlide className="bg-transparent">
+                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-200">
                   <div className="flex justify-between">
                     <h3 className="text-xl font-bold ">Amazing Support!</h3>
                     <span className="bg-amber-400 bg-opacity-20 rounded px-3 py-1 inline-flex justify-center items-center gap-1 font-bold">

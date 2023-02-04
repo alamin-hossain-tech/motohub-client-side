@@ -21,7 +21,7 @@ const Hero = () => {
           <h4 className="text-xl font-bold text-blue-600">
             Welcome to MotoHub
           </h4>
-          <h1 className="text-white text-7xl  font-bold after:absolute background-text after:right-28 after:bottom-20 after:w-1/2 -z-10 after:text-[70px] after:opacity-5 after:text-white after:translate-y--1/2">
+          <h1 className="text-white text-7xl  font-bold after:absolute background-text after:right-28 after:bottom-20 after:w-1/2 -z-10 after:text-[70px] after:opacity-10 after:text-white after:translate-y--1/2">
             Buy, Sell or Trade
           </h1>
           <p className="text-white py-3 text-2xl font-medium">

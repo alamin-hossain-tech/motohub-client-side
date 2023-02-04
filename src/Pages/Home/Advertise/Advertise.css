@@ -1,0 +1,52 @@
+.mySwiperCarCard .swiper-button-next:after,
+.testimonial-swiper .swiper-button-next:after,
+.mySwiperCarCard .swiper-button-prev:after,
+.testimonial-swiper .swiper-button-prev:after {
+  font-size: 1.7rem;
+  /* font: var(--fa-font-solid); */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.mySwiperCarCard .swiper-button-prev:after,
+.testimonial-swiper .swiper-button-prev:after,
+.mySwiperCarCard .swiper-rtl .swiper-button-next:after,
+.testimonial-swiper .swiper-rtl .swiper-button-next:after {
+  content: "\f060";
+  z-index: 10;
+}
+.mySwiperCarCard .swiper-button-next:after,
+.testimonial-swiper .swiper-button-next:after,
+.mySwiperCarCard .swiper-rtl .swiper-button-prev:after,
+.testimonial-swiper .swiper-rtl .swiper-button-prev:after {
+  content: "\f061";
+}
+
+.testimonial-swiper .swiper-button-prev:after,
+.testimonial-swiper .swiper-button-next:after {
+  background-color: #0a79fe;
+  padding: 10px 11px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: white;
+}
+.mySwiperCarCard .swiper-button-prev,
+.mySwiperCarCard .swiper-rtl .swiper-button-next {
+  left: 93%;
+  right: auto;
+}
+
+.mySwiperCarCard .swiper-button-next,
+.mySwiperCarCard .swiper-button-prev {
+  top: 5%;
+}
+
+/* .testimonial-swiper .swiper-button-prev,
+.testimonial-swiper .swiper-rtl .swiper-button-next {
+  left: -2%;
+  right: auto;
+} */
+
+.testimonial-swiper {
+  background: transparent;
+}

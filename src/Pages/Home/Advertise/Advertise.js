@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useAxios from "../../../Hooks/useAxios";
 import AdvertiseCard from "../../Shared/AdvertiseCard/AdvertiseCard";
+import "./Advertise.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
