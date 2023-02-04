@@ -1,9 +1,10 @@
 import { Button } from "flowbite-react";
 import React from "react";
+import { Parallax } from "react-scroll-parallax";
 
 const Subscribe = () => {
   return (
-    <div className="bg-neutral-700">
+    <div className="bg-neutral-700 py-6">
       <div className="container mx-auto flex">
         <div className="w-1/2 text-white self-center">
           <p className="font-semibold text-blue-600 text-xl pb-2">Newsletter</p>
@@ -20,11 +21,13 @@ const Subscribe = () => {
           </div>
         </div>
         <div className="text-right">
-          <img
-            className="-mt-24 ml-auto "
-            src="https://i.ibb.co/jbQkWGw/tmp-63de2246aa8d1.png"
-            alt=""
-          />
+          <Parallax translateX={["80px", "-10px"]}>
+            <img
+              className="-mt-24"
+              src="https://i.ibb.co/jbQkWGw/tmp-63de2246aa8d1.png"
+              alt=""
+            />
+          </Parallax>
         </div>
       </div>
     </div>

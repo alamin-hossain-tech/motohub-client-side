@@ -29,7 +29,7 @@ const Testimonial = () => {
           onEnter={() => setCounterOn(true)}
           onExit={() => setCounterOn(false)}
         >
-          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0 w-1/2 right-0  shadow-xl rounded justify-center items-center clip_path flex gap-5">
+          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0 w-2/3 right-0  shadow-xl rounded justify-center items-center clip_path flex gap-5">
             <div className="flex gap-3 items-center">
               <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
                 <BsSuitHeart className="inline  text-2xl    text-blue-600"></BsSuitHeart>

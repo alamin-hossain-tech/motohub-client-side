@@ -1,4 +1,5 @@
 .background-text::after {
   content: "Best Car's in Town";
   text-align: left;
+  width: 400px;
 }

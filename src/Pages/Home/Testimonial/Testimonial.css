@@ -1,5 +1,7 @@
 .testimonial-bg {
   background: url(https://i.ibb.co/FzcCJF7/silver-metallic-color-sport-sedan-road.png);
+  background-size: cover;
+  background-position: bottom right;
   isolation: isolate;
 }
 

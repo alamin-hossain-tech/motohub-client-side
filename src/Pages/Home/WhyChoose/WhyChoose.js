@@ -132,10 +132,22 @@ const WhyChoose = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img className="rounded" src={advertiseOne} alt="" />
+                <div className="flex">
+                  <img
+                    style={{ height: "12.72rem" }}
+                    className="rounded"
+                    src={advertiseOne}
+                    alt=""
+                  />
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <img className="rounded" src={advertiseTwo} alt="" />
+                <img
+                  style={{ height: "12.72rem" }}
+                  className="rounded"
+                  src={advertiseTwo}
+                  alt=""
+                />
               </SwiperSlide>
             </Swiper>
           </div>
