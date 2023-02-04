@@ -11,6 +11,8 @@ import WhyChoose from "./WhyChoose/WhyChoose";
 import Testimonial from "./Testimonial/Testimonial";
 import Features from "./Features/Features";
 import FAQ from "./FAQ/FAQ";
+import NewsBlog from "./NewsBlog/NewsBlog";
+import Subscribe from "./Subscribe/Subscribe";
 
 const Home = () => {
   SetTabTitle("Home");
@@ -23,7 +25,9 @@ const Home = () => {
       {/* <Category></Category> */}
       <Testimonial></Testimonial>
       <FAQ></FAQ>
+      <Subscribe></Subscribe>
       <Banner></Banner>
+      <NewsBlog></NewsBlog>
       <Service></Service>
     </div>
   );

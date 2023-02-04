@@ -170,8 +170,8 @@ const AdvertiseCard = ({ product }) => {
 
   return (
     <>
-      <Card>
-        <div className="relative">
+      <Card style={{ backGroundColor: "red" }}>
+        <div>
           <CardMedia
             component="img"
             alt="green iguana"

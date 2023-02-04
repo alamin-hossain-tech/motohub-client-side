@@ -12,25 +12,30 @@ import "aos/dist/aos.css";
 const FAQ = () => {
   AOS.init();
   return (
-    <div className="bg-neutral-100">
+    <div className="bg-neutral-600">
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
-        className="container mx-auto pt-56 pb-24 text-center"
+        className="container mx-auto pt-56 pb-32 text-center"
       >
         <h4 className="text-blue-600 text-xl font-semibold ">FAQs</h4>
-        <h2 className="text-4xl font-semibold ">Frequently Ask Question</h2>
+        <h2 className="text-4xl font-semibold text-white ">
+          Frequently Ask Question
+        </h2>
         <div className="w-2/3 mx-auto pt-12">
-          <Accordion>
+          <Accordion className="bg-black">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography> Can I See the Inspection Certification?</Typography>
+              <Typography className="py-2">
+                {" "}
+                Can I See the Inspection Certification?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="text-start">
                 A "certified" used car is just a used car that has been
                 inspected, repaired, and restored to near-new condition. That's
                 fine, and manufacturer certified used cars can be great deals.
@@ -48,10 +53,12 @@ const FAQ = () => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography>Can You Catch Up on the Service?</Typography>
+              <Typography className="py-2">
+                Can You Catch Up on the Service?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="text-start">
                 If you're looking at a used car with 100,000 miles on the
                 odometer, odds are pretty good that it's got an expensive
                 service coming up soon - could be spark plugs, a timing belt, a
@@ -69,12 +76,12 @@ const FAQ = () => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography>
+              <Typography className="py-2">
                 What Aftermarket/Dealer Parts Are on the Car?
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="text-start">
                 Would you drive to Pep Boys and shell out $200 for a pair of mud
                 flaps and stick-on fish-eye mirrors? Of course not. But would
                 you notice if your dealer were charging $45,750 instead of
@@ -93,10 +100,12 @@ const FAQ = () => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography>What's My Out-the-Door Price?</Typography>
+              <Typography className="py-2">
+                What's My Out-the-Door Price?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="text-start">
                 Dealers typically tack on loads of taxes, fees, and charges to
                 turn a profit. Some of them are legit and inevitable, like
                 documentation fees, registration, and tax. The rest are there to
@@ -112,10 +121,12 @@ const FAQ = () => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography>Can I Take It Home for a Test Drive?</Typography>
+              <Typography className="py-2">
+                Can I Take It Home for a Test Drive?
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography className="text-start">
                 Different dealerships have different policies on test drives,
                 but as a general rule, if you're a serious buyer spending big
                 money on a car from a reputable dealer, they're more likely to

@@ -8,7 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 
 // Import Swiper React components
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -49,34 +49,35 @@ const Advertise = () => {
   return (
     <>
       {response?.length > 0 && (
-        <div
-          data-aos="fade-up"
-          data-aos-duration="1500"
-          data-aos-anchor-placement=" bottom"
-          className="py-24 container mx-auto px-8 lg:px-0 bg-white"
-        >
-          <div>
-            <h2 className=" text-center text-4xl font-semibold">
-              Featured Cars
-            </h2>
-          </div>
+        <div className="bg-neutral-700">
+          <div className="py-24 container mx-auto px-8 lg:px-0">
+            <div className="text-white">
+              <h2 className=" text-center text-4xl font-semibold">
+                Featured Cars
+              </h2>
+              <p className="text-center w-1/3 mx-auto pt-4">
+                Dramatically plagiarize cost effective products and impactful
+                action items. Credibly impactful sources before frictionless.
+              </p>
+            </div>
 
-          <div className=" relative">
-            <Swiper
-              slidesPerView={4}
-              spaceBetween={30}
-              loop={true}
-              navigation={true}
-              modules={[Navigation]}
-              className="mySwiperCarCard"
-            >
-              <div className=""></div>
-              {response.map((product) => (
-                <SwiperSlide key={product._id}>
-                  <AdvertiseCard product={product}></AdvertiseCard>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <div className=" relative">
+              <Swiper
+                slidesPerView={4}
+                spaceBetween={30}
+                loop={true}
+                navigation={true}
+                modules={[Navigation]}
+                className="mySwiperCarCard"
+              >
+                <div className=""></div>
+                {response.map((product) => (
+                  <SwiperSlide key={product._id}>
+                    <AdvertiseCard product={product}></AdvertiseCard>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
         </div>
       )}

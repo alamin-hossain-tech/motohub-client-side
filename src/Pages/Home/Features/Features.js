@@ -5,7 +5,7 @@ import { useParallax } from "react-scroll-parallax";
 const Features = () => {
   const { ref } = useParallax({ speed: 35 });
   return (
-    <div className=" bg-neutral-100 pt-12 pb-24">
+    <div className=" bg-neutral-600 text-white pt-12 pb-24">
       <div className="flex justify-center items-center mx-auto container">
         <div className="flex-1">
           <div className="flex gap-3">

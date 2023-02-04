@@ -29,7 +29,7 @@ const Testimonial = () => {
           onEnter={() => setCounterOn(true)}
           onExit={() => setCounterOn(false)}
         >
-          <div className="absolute bg-white h-[140px] -top-20 bottom-0 w-1/2 right-0  shadow-xl rounded justify-center items-center clip_path flex gap-5">
+          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0 w-1/2 right-0  shadow-xl rounded justify-center items-center clip_path flex gap-5">
             <div className="flex gap-3 items-center">
               <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
                 <BsSuitHeart className="inline  text-2xl    text-blue-600"></BsSuitHeart>
@@ -89,7 +89,7 @@ const Testimonial = () => {
               className="testimonial-swiper"
             >
               <SwiperSlide className="">
-                <div className="h-full p-6 hover:cursor-pointer">
+                <div className="h-full px-10 py-6 hover:cursor-pointer bg-neutral-200">
                   <div className="flex justify-between">
                     <h3 className="text-xl font-bold ">Amazing Support!</h3>
                     <span className="bg-amber-400 bg-opacity-20 rounded px-3 py-1 inline-flex justify-center items-center gap-1 font-bold">
