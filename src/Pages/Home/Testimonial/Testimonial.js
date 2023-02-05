@@ -147,7 +147,7 @@ const Testimonial = () => {
                     <div className="flex gap-2">
                       <img
                         className="h-[60px] w-[60px] rounded-full"
-                        src="https://i.ibb.co/Mh0phYM/leif.jpg"
+                        src="https://i.ibb.co/tzbZSSm/pexels-juan-pablo-serrano-arenas-1139743.jpg"
                         alt=""
                       />
                       <div>

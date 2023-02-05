@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 
 import { HiArrowRight, HiOutlineLightBulb } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -125,7 +125,11 @@ const WhyChoose = () => {
               pagination={{
                 clickable: true,
               }}
-              modules={[Pagination]}
+              autoplay={{
+                delay: 1500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Pagination]}
               className="mySwiper"
             >
               <SwiperSlide>
@@ -133,7 +137,7 @@ const WhyChoose = () => {
                   <img
                     style={{ height: "12.72rem" }}
                     className="rounded"
-                    src={advertiseOne}
+                    src="https://i.ibb.co/T16Sxrp/car-sale-1.jpg"
                     alt=""
                   />
                 </div>
@@ -142,7 +146,7 @@ const WhyChoose = () => {
                 <img
                   style={{ height: "12.72rem" }}
                   className="rounded"
-                  src={advertiseTwo}
+                  src="https://i.ibb.co/RNyT7Bc/car-sale-2.jpg"
                   alt=""
                 />
               </SwiperSlide>

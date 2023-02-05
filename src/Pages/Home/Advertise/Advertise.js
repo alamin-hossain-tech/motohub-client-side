@@ -1,5 +1,5 @@
 import { Spinner } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 import useAxios from "../../../Hooks/useAxios";
 import AdvertiseCard from "../../Shared/AdvertiseCard/AdvertiseCard";
@@ -17,9 +17,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
 
-import { Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 
 const Advertise = () => {
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty("--progress", 1 - progress);
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  };
   AOS.init();
   const { logOut } = useContext(AuthContext);
   const {
@@ -68,7 +74,12 @@ const Advertise = () => {
                 spaceBetween={30}
                 loop={true}
                 navigation={true}
-                modules={[Navigation]}
+                modules={[Navigation, Autoplay]}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                onAutoplayTimeLeft={onAutoplayTimeLeft}
                 className="mySwiperCarCard"
               >
                 <div className=""></div>
