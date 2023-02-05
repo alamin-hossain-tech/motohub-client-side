@@ -101,12 +101,10 @@ const Testimonial = () => {
                     </span>
                   </div>
                   <p className="text-medium py-4 italic">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Culpa eveniet possimus deserunt, fugit cupiditate ipsa saepe
-                    itaque officia accusamus commodi. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Dolor delectus magni ducimus,
-                    corporis molestias similique esse eligendi. Similique,
-                    ratione quis?
+                    MotoHub is a great car reseller I've done business with. The
+                    staff are really friendly and go out of their way to make
+                    sure that the car purchasing process goes smoothly. I highly
+                    recommend MotoHub!
                   </p>
                   <div className="flex justify-between">
                     <div className="flex gap-2">
@@ -118,6 +116,45 @@ const Testimonial = () => {
                       <div>
                         <h4 className="text-lg font-semibold">Hin Su</h4>
                         <p className="font-medium">CEO, InfoTech</p>
+                      </div>
+                    </div>
+                    <div className="self-end">
+                      <img
+                        src="https://i.ibb.co/gvj4jvD/quote-revised.png"
+                        alt=""
+                        className="h-[60px] opacity-20"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="bg-transparent">
+                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-200">
+                  <div className="flex justify-between">
+                    <h3 className="text-xl font-bold ">Great Service</h3>
+                    <span className="bg-amber-400 bg-opacity-20 rounded px-3 py-1 inline-flex justify-center items-center gap-1 font-bold">
+                      <BsStarFill className="inline text-amber-500"></BsStarFill>{" "}
+                      5.0
+                    </span>
+                  </div>
+                  <p className="text-medium py-4 italic">
+                    When I was looking to buy a car, I decided to give MotoHub a
+                    shot and boy am I glad that I did! MotoHub has a great
+                    selection of cars, both new and used. I highly recommend it
+                    for anyone looking for a reliable car reseller!
+                  </p>
+                  <div className="flex justify-between">
+                    <div className="flex gap-2">
+                      <img
+                        className="h-[60px] w-[60px] rounded-full"
+                        src="https://i.ibb.co/Mh0phYM/leif.jpg"
+                        alt=""
+                      />
+                      <div>
+                        <h4 className="text-lg font-semibold">
+                          Artie Billings
+                        </h4>
+                        <p className="font-medium">Managing, KBL Contract</p>
                       </div>
                     </div>
                     <div className="self-end">

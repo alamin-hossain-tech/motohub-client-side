@@ -31,8 +31,8 @@ const WhyChoose = () => {
             Why Choose Us?
           </h2>
           <p className="text-center w-1/3 mx-auto pt-4">
-            Dramatically plagiarize cost effective products and impactful action
-            items. Credibly impactful sources before frictionless.
+            Get ready to feel the freedom of driving in style with the car also
+            comes with an unbeatable price tag!
           </p>
         </div>
         <div className="grid grid-cols-3 gap-5">
@@ -42,27 +42,24 @@ const WhyChoose = () => {
               Expert Certified Mechanics
             </h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              tenetur, at voluptatibus omnis voluptates provident expedita
-              eligendi facere et non!
+              Are you looking for a reliable and certified mechanic to take care
+              of your car? Look no further! Expert Certified Mechanics are here.
             </p>
           </div>
           <div className="p-5 bg-neutral-700 text-white shadow rounded">
             <BsGear className="bg-blue-600 bg-opacity-20 text-5xl p-3 rounded  text-blue-600"></BsGear>
             <h4 className="font-semibold text-xl py-3">Genuine Spares Parts</h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              tenetur, at voluptatibus omnis voluptates provident expedita
-              eligendi facere et non!
+              Get your car back on the road in no time with Genuine Spares
+              Parts! Our OEM-certified spare parts are designed for.
             </p>
           </div>
           <div className="p-5 bg-neutral-700 text-white shadow rounded">
             <BsCurrencyDollar className="bg-blue-600 bg-opacity-20 text-5xl p-3 rounded text-blue-600 "></BsCurrencyDollar>
             <h4 className="font-semibold text-xl py-3">Get Reasonable Price</h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              tenetur, at voluptatibus omnis voluptates provident expedita
-              eligendi facere et non!
+              Looking for unbeatable prices on everything from groceries to
+              electronics? Look no further than Reasonable Price!
             </p>
           </div>
           <div className=" bg-neutral-700 text-white shadow rounded col-span-2 p-5">

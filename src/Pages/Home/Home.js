@@ -28,7 +28,7 @@ const Home = () => {
       <Subscribe></Subscribe>
       <FAQ></FAQ>
       <Banner></Banner>
-      <Service></Service>
+      {/* <Service></Service> */}
     </div>
   );
 };

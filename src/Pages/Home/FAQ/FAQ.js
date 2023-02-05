@@ -16,7 +16,7 @@ const FAQ = () => {
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
-        className="container mx-auto py-32 text-center"
+        className="container mx-auto pt-24 pb-56 text-center"
       >
         <h4 className="text-blue-600 text-xl font-semibold ">FAQs</h4>
         <h2 className="text-4xl font-semibold text-white ">

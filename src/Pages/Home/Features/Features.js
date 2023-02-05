@@ -14,9 +14,9 @@ const Features = () => {
                 Experience support team
               </h4>
               <p className="text-right">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                Struggling to provide the best customer service? Let the
+                Experience Support Team do it for you. Our team of experts are
+                here to help you.
               </p>
             </div>
             <div>
@@ -29,9 +29,9 @@ const Features = () => {
                 Handle emergency situations
               </h4>
               <p className="text-right">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                Handle any emergency situation with confidence with Handle
+                emergency situation. Our app provides real-time advice and
+                guidance to help you
               </p>
             </div>
             <div>
@@ -44,9 +44,9 @@ const Features = () => {
                 Insurance Included
               </h4>
               <p className="text-right">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                Don't take a chance with your financial security! Get the peace
+                of mind that comes with Insurance Included - comprehensive
+                coverage for all your needs.
               </p>
             </div>
             <div>
@@ -71,9 +71,9 @@ const Features = () => {
                 Hight technology instrument
               </h4>
               <p className="text-left">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                With our incredibly precise and reliable measurements, you can
+                quickly and easily gain improved insights into your research
+                area.
               </p>
             </div>
           </div>
@@ -87,9 +87,8 @@ const Features = () => {
                 Access control system
               </h4>
               <p className="text-left">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                Tired of keeping track of manual keys and access cards? Upgrade
+                to an automated access control system today!
               </p>
             </div>
           </div>
@@ -102,9 +101,8 @@ const Features = () => {
                 Online 24/7 Available
               </h4>
               <p className="text-left">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Veritatis doloremque in magnam debitis ut maiores illo
-                voluptatum repellendus, exercitationem blanditiis.
+                24/7 support from our team of experts helps you provide the best
+                customer experience, no matter what time of day or night.
               </p>
             </div>
           </div>

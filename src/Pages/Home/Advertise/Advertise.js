@@ -57,8 +57,8 @@ const Advertise = () => {
                 Featured Cars
               </h2>
               <p className="text-center w-1/3 mx-auto pt-4">
-                Dramatically plagiarize cost effective products and impactful
-                action items. Credibly impactful sources before frictionless.
+                Get ready for the ride of your life with MotoHub Cars! Our
+                complete range of vehicles offers something for everyone.
               </p>
             </div>
 
