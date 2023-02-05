@@ -30,12 +30,12 @@ const WhyChoose = () => {
           <h2 className="text-center  text-4xl font-semibold">
             Why Choose Us?
           </h2>
-          <p className="text-center w-1/3 mx-auto pt-4">
+          <p className="text-center px-8 lg:px-0 lg:w-1/3 mx-auto pt-4">
             Get ready to feel the freedom of driving in style with the car also
             comes with an unbeatable price tag!
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-5">
+        <div className=" mx-5 lg:mx-0 grid grid-cols-1 lg:grid-cols-3 gap-5">
           <div className="p-5 bg-neutral-700 text-white shadow rounded">
             <HiOutlineLightBulb className="bg-blue-600 bg-opacity-20 text-5xl p-3 rounded  text-blue-600"></HiOutlineLightBulb>
             <h4 className="font-semibold text-xl py-3">
@@ -62,7 +62,7 @@ const WhyChoose = () => {
               electronics? Look no further than Reasonable Price!
             </p>
           </div>
-          <div className=" bg-neutral-700 text-white shadow rounded col-span-2 p-5">
+          <div className=" bg-neutral-700 text-white shadow rounded lg:col-span-2 p-5">
             <div className="flex justify-between pb-3">
               <h2 className="text-2xl font-semibold">Best Selling Brand</h2>
               <Link to="/" className="text-blue-600 font-semibold">
@@ -72,12 +72,12 @@ const WhyChoose = () => {
                 </span>
               </Link>
             </div>
-            <div className="grid grid-cols-4 gap-3 grid-flow-col auto-cols-max">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 ">
               <div>
                 <Link to="/category/4">
                   <div className=" bg-gray-200 shadow rounded hover:shadow-lg hover:cursor-pointer  flex items-center justify-center p-5">
                     <img
-                      className="h-[80px]"
+                      className="h-[50px] lg:h-[80px]"
                       src="https://i.ibb.co/HG1fXdq/nissan-6.png"
                       alt=""
                     />
@@ -88,7 +88,7 @@ const WhyChoose = () => {
                 <Link to="/category/1">
                   <div className=" shadow bg-gray-200 rounded hover:shadow-lg hover:cursor-pointer  flex items-center justify-center p-5">
                     <img
-                      className="h-[80px]"
+                      className="h-[50px] lg:h-[80px]"
                       src="https://i.ibb.co/m8m1nM1/toyota.png"
                       alt=""
                     />
@@ -99,7 +99,7 @@ const WhyChoose = () => {
                 <Link to="/category/2">
                   <div className=" shadow bg-gray-200 rounded hover:shadow-lg hover:cursor-pointer  flex items-center justify-center p-5">
                     <img
-                      className="h-[80px]"
+                      className="h-[50px] lg:h-[80px]"
                       src="https://i.ibb.co/0qFD1ch/Asset-2.png"
                       alt=""
                     />
@@ -110,7 +110,7 @@ const WhyChoose = () => {
                 <Link to="/category/3">
                   <div className=" shadow bg-gray-200 rounded hover:shadow-lg hover:cursor-pointer  flex items-center justify-center p-5">
                     <img
-                      className="h-[80px]"
+                      className="h-[50px] lg:h-[80px]"
                       src="https://i.ibb.co/ws4cJP4/hyundai-lg-rev3.png"
                       alt=""
                     />

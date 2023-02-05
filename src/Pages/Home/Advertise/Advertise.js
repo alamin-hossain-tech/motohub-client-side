@@ -62,7 +62,7 @@ const Advertise = () => {
               <h2 className=" text-center text-4xl font-semibold">
                 Featured Cars
               </h2>
-              <p className="text-center w-1/3 mx-auto pt-4">
+              <p className="text-center px-8 lg:px-0 lg:w-1/3 mx-auto pt-4">
                 Get ready for the ride of your life with MotoHub Cars! Our
                 complete range of vehicles offers something for everyone.
               </p>
@@ -70,8 +70,20 @@ const Advertise = () => {
 
             <div className=" relative">
               <Swiper
-                slidesPerView={4}
-                spaceBetween={30}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                  },
+                }}
                 loop={true}
                 navigation={true}
                 modules={[Navigation, Autoplay]}
