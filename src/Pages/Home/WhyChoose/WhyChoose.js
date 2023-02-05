@@ -136,7 +136,7 @@ const WhyChoose = () => {
                 <div className="flex">
                   <img
                     style={{ height: "12.72rem" }}
-                    className="rounded"
+                    className="rounded w-full"
                     src="https://i.ibb.co/T16Sxrp/car-sale-1.jpg"
                     alt=""
                   />
@@ -145,7 +145,7 @@ const WhyChoose = () => {
               <SwiperSlide>
                 <img
                   style={{ height: "12.72rem" }}
-                  className="rounded"
+                  className="rounded w-full"
                   src="https://i.ibb.co/RNyT7Bc/car-sale-2.jpg"
                   alt=""
                 />
