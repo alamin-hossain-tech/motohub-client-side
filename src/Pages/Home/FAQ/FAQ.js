@@ -19,10 +19,10 @@ const FAQ = () => {
         className="container mx-auto pt-24 pb-56 text-center"
       >
         <h4 className="text-blue-600 text-xl font-semibold ">FAQs</h4>
-        <h2 className="text-4xl font-semibold text-white ">
+        <h2 className="text-4xl w-2/3 mx-auto font-semibold w-1/2 lg:w-full text-white ">
           Frequently Ask Question
         </h2>
-        <div className="w-2/3 mx-auto pt-12">
+        <div className=" px-5 lg:px-0 w-full lg:w-2/3 mx-auto pt-12">
           <Accordion className="bg-black">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

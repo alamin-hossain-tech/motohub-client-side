@@ -40,15 +40,13 @@ const Hero = () => {
           </Parallax>
         </div>
         <div className="lg:hidden">
-          <Parallax translateX={["30px", "-30px"]}>
-            <img
-              src="https://i.ibb.co/m6c2fBV/car.png"
-              alt="car_image"
-              className="w-full"
-              data-aos="fade-left"
-              data-aos-duration="1500"
-            />
-          </Parallax>
+          <img
+            src="https://i.ibb.co/m6c2fBV/car.png"
+            alt="car_image"
+            className="w-full"
+            data-aos="fade-left"
+            data-aos-duration="1500"
+          />
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const NewsBlog = () => {
           <h4 className="text-blue-600 text-xl font-semibold ">
             Recent News & Update
           </h4>
-          <h2 className="text-4xl font-semibold text-white ">
+          <h2 className="text-4xl w-2/3 mx-auto lg:w-full font-semibold text-white ">
             Upcoming Cars & Events
           </h2>
           <p className="text-center px-8 lg:px-0 lg:w-1/3 text-white mx-auto pt-4">
