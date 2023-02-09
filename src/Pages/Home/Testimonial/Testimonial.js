@@ -58,7 +58,7 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded lg:hidden clip_path flex  items-center pl-7 justify-center ">
+          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded lg:hidden clip_path flex  items-center pl-10 lg:pl-0 justify-center ">
             <Swiper
               slidesPerView={1}
               // spaceBetween={30}
