@@ -13,12 +13,12 @@ const NewsBlog = () => {
           <h2 className="text-4xl font-semibold text-white ">
             Upcoming Cars & Events
           </h2>
-          <p className="text-center w-1/3 text-white mx-auto pt-4">
+          <p className="text-center px-8 lg:px-0 lg:w-1/3 text-white mx-auto pt-4">
             If you are looking for a new and used car dealership, follow this
             link for a quick and easy way to order your new.
           </p>
         </div>
-        <div className="container pt-10 flex gap-6 mx-auto">
+        <div className="container pt-10 flex flex-col lg:flex-row px-5 lg:px-0 gap-6 mx-auto">
           <div className="blogCard flex-1 rounded shadow bg-neutral-700">
             <div className="relative p-5">
               <img

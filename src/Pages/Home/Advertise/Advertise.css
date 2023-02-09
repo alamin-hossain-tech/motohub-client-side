@@ -50,3 +50,14 @@
 .testimonial-swiper {
   background: transparent;
 }
+
+@media only screen and (max-width: 768px) {
+  .mySwiperCarCard .swiper-button-prev,
+  .mySwiperCarCard .swiper-rtl .swiper-button-next {
+    left: 70%;
+  }
+  .mySwiperCarCard .swiper-button-next,
+  .mySwiperCarCard .swiper-button-prev {
+    top: 3%;
+  }
+}

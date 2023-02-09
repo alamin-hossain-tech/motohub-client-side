@@ -6,50 +6,59 @@ const Features = () => {
   const { ref } = useParallax({ speed: 35 });
   return (
     <div className=" bg-neutral-600 text-white pt-12 pb-24">
-      <div className="flex justify-center items-center mx-auto container">
+      <div className="flex flex-col lg:flex-row justify-center items-center px-5 lg:px-0 mx-auto container">
         <div className="flex-1">
           <div className="flex gap-3">
+            <div className="lg:hidden">
+              <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
+            </div>
             <div className="">
-              <h4 className="text-right font-semibold text-xl">
+              <h4 className="text-left lg:text-right font-semibold text-xl">
                 Experience support team
               </h4>
-              <p className="text-right">
+              <p className="text-left lg:text-right">
                 Struggling to provide the best customer service? Let the
                 Experience Support Team do it for you. Our team of experts are
                 here to help you.
               </p>
             </div>
-            <div>
+            <div className="hidden lg:block">
               <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
             </div>
           </div>
           <div className="flex gap-3 py-12">
+            <div className="lg:hidden">
+              <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
+            </div>
             <div className="">
-              <h4 className="text-right font-semibold text-xl">
+              <h4 className="text-left lg:text-right font-semibold text-xl">
                 Handle emergency situations
               </h4>
-              <p className="text-right">
+              <p className="text-left lg:text-right">
                 Handle any emergency situation with confidence with Handle
                 emergency situation. Our app provides real-time advice and
                 guidance to help you
               </p>
             </div>
-            <div>
+            <div className="hidden lg:block">
               <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
             </div>
           </div>
           <div className="flex gap-3">
+            <div className="lg:hidden">
+              <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
+            </div>
             <div className="">
-              <h4 className="text-right font-semibold text-xl">
+              <h4 className="text-left lg:text-right font-semibold text-xl">
                 Insurance Included
               </h4>
-              <p className="text-right">
+              <p className="text-left lg:text-right">
                 Don't take a chance with your financial security! Get the peace
                 of mind that comes with Insurance Included - comprehensive
                 coverage for all your needs.
               </p>
             </div>
-            <div>
+            <div className="hidden lg:block">
               <FaRegDotCircle className="inline text-blue-600"></FaRegDotCircle>
             </div>
           </div>

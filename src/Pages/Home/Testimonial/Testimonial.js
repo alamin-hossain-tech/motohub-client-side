@@ -7,16 +7,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
-import { Navigation } from "swiper";
-import {
-  BsFillPlayFill,
-  BsHeart,
-  BsPlayCircle,
-  BsPlayCircleFill,
-  BsStar,
-  BsStarFill,
-  BsSuitHeart,
-} from "react-icons/bs";
+import { Autoplay, Navigation } from "swiper";
+import { BsFillPlayFill, BsStarFill, BsSuitHeart } from "react-icons/bs";
 import ScrollTrigger from "react-scroll-trigger";
 import { IoCarSportOutline, IoSpeedometerOutline } from "react-icons/io5";
 import "./Testimonial.css";
@@ -30,7 +22,7 @@ const Testimonial = () => {
           onEnter={() => setCounterOn(true)}
           onExit={() => setCounterOn(false)}
         >
-          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0 w-2/3 right-0  shadow-xl rounded justify-center items-center clip_path flex gap-5">
+          <div className="hidden lg:flex absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded justify-center items-center clip_path gap-5">
             <div className="flex gap-3 items-center">
               <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
                 <BsSuitHeart className="inline  text-2xl    text-blue-600"></BsSuitHeart>
@@ -66,6 +58,69 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
+          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded lg:hidden clip_path flex  items-center pl-7 justify-center ">
+            <Swiper
+              slidesPerView={1}
+              // spaceBetween={30}
+              loop={true}
+              autoplay={{
+                delay: 1000,
+                disableOnInteraction: false,
+              }}
+              // navigation={true}
+              modules={[Autoplay]}
+              className="countdown-swiper "
+            >
+              <SwiperSlide className="bg-transparent">
+                <div className="flex gap-3 items-center">
+                  <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
+                    <BsSuitHeart className="inline  text-2xl    text-blue-600"></BsSuitHeart>
+                  </div>
+                  <div>
+                    <span className="text-3xl font-bold">
+                      {counterOn && (
+                        <CountUp start={950} duration={2} end={1000} />
+                      )}
+                      +
+                    </span>
+                    <p className="font-medium">Happy Customer</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="bg-transparent">
+                <div className="flex gap-3 items-center">
+                  <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
+                    <IoCarSportOutline className="inline  text-2xl    text-blue-600"></IoCarSportOutline>
+                  </div>
+                  <div>
+                    <span className="text-3xl font-bold">
+                      {counterOn && (
+                        <CountUp start={180} duration={2} end={200} />
+                      )}
+                      +
+                    </span>
+                    <p className="font-medium">Cars in Showroom</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="bg-transparent">
+                <div className="flex gap-3 items-center">
+                  <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
+                    <IoSpeedometerOutline className="inline  text-2xl    text-blue-600"></IoSpeedometerOutline>
+                  </div>
+                  <div>
+                    <span className="text-3xl font-bold">
+                      {counterOn && (
+                        <CountUp start={10} duration={2} end={20} />
+                      )}
+                      +
+                    </span>
+                    <p className="font-medium">Car Solutions</p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </ScrollTrigger>
         <div className="flex container mx-auto h-full">
           <div className="w-1/2 self-center">
@@ -82,7 +137,7 @@ const Testimonial = () => {
           </div>
         </div>
         <div className="container relative mx-auto">
-          <div className="w-[600px] absolute -bottom-36  ">
+          <div className="w-[100%] lg:w-[600px] absolute -bottom-44 lg:-bottom-36  ">
             <Swiper
               slidesPerView={1}
               // spaceBetween={30}

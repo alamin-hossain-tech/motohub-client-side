@@ -27,7 +27,7 @@ const FooterMain = () => {
   return (
     <div>
       <div className="footer text-white bg-neutral-700 pt-20 pb-16">
-        <div className="flex gap-12 justify-between container mx-auto pb-6">
+        <div className="flex flex-col lg:flex-row gap-12 justify-between container mx-auto pb-6">
           <div className="w-1/4">
             <img className="h-6 md:h-9" src={logo} alt="" />
             <span class="self-center text-xl lg:text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
@@ -101,7 +101,7 @@ const FooterMain = () => {
             </PhotoProvider>
           </div>
         </div>
-        <div className="container  mx-auto flex justify-between gap-5 ">
+        <div className="container  mx-auto flex justify-between gap-5 flex-col lg:flex-row">
           <div className="border-t border-neutral-600  ">
             <h4 className="text-2xl font-semibold pt-6 pb-3"> Location</h4>
             <div className="flex gap-3 items-center">
@@ -117,7 +117,7 @@ const FooterMain = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-5 border-t border-neutral-600 border- w-1/3 justify-center">
+          <div className="flex gap-5 border-t border-neutral-600 flex-col lg:flex-row w-full lg:w-1/3 justify-center">
             <div className="">
               <h4 className="text-2xl font-semibold pt-6 pb-3"> Mail</h4>
 

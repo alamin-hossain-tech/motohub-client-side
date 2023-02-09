@@ -20,12 +20,6 @@ import "swiper/css/free-mode";
 import { Autoplay, Navigation } from "swiper";
 
 const Advertise = () => {
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    progressCircle.current.style.setProperty("--progress", 1 - progress);
-    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-  };
   AOS.init();
   const { logOut } = useContext(AuthContext);
   const {
@@ -68,7 +62,7 @@ const Advertise = () => {
               </p>
             </div>
 
-            <div className=" relative">
+            <div className=" relative pt-5 md:pt-0">
               <Swiper
                 breakpoints={{
                   640: {
@@ -91,7 +85,6 @@ const Advertise = () => {
                   delay: 2500,
                   disableOnInteraction: false,
                 }}
-                onAutoplayTimeLeft={onAutoplayTimeLeft}
                 className="mySwiperCarCard"
               >
                 <div className=""></div>

@@ -40,7 +40,7 @@ const Hero = () => {
           </Parallax>
         </div>
         <div className="lg:hidden">
-          <Parallax translateX={["50px", "-50px"]}>
+          <Parallax translateX={["30px", "-30px"]}>
             <img
               src="https://i.ibb.co/m6c2fBV/car.png"
               alt="car_image"
