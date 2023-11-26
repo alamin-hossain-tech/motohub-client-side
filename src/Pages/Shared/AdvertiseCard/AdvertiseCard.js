@@ -170,14 +170,17 @@ const AdvertiseCard = ({ product }) => {
 
   return (
     <>
-      <Card style={{ backGroundColor: "red" }}>
+      <div
+        // sx={{ backgroundColor: "bg-neutral-600" }}
+        className="bg-neutral-600 rounded-md relative"
+      >
         <div>
           <CardMedia
             component="img"
             alt="green iguana"
             height="140px"
             image={product_image}
-            className="prdoct_card_img "
+            className="prdoct_card_img rounded-t-md"
           />
           {
             <div className="absolute top-2 right-2">
@@ -219,14 +222,14 @@ const AdvertiseCard = ({ product }) => {
             />
           </Badge>
         </div>
-        <CardContent className="">
+        <CardContent className=" text-white">
           <Typography gutterBottom variant="h5" component="div"></Typography>
           <h4 className="font-bold text-xl">{name}</h4>
           <div>
-            <h4 className="text-lg text-blue-600 font-medium">${sell_price}</h4>
+            <h4 className="text-lg font-medium">${sell_price}</h4>
           </div>
           <Divider className="py-3" />
-          <div className="pt-5 flex justify-between">
+          <div className="pt-5 flex justify-between ">
             <div className="flex items-center gap-3">
               <SlSpeedometer
                 className="inline text-blue-600"
@@ -303,7 +306,7 @@ const AdvertiseCard = ({ product }) => {
         </div> */}
 
         {}
-      </Card>
+      </div>
 
       {/* Buying Modal  */}
       <Modal

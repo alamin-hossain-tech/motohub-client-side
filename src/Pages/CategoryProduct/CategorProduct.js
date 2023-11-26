@@ -39,7 +39,7 @@ const CategorProduct = () => {
   });
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-[80vh]">
+      <div className="flex justify-center bg-neutral-700 items-center h-[80vh]">
         <Spinner aria-label="Center-aligned spinner example" />
       </div>
     );
@@ -49,21 +49,29 @@ const CategorProduct = () => {
   }
 
   return (
-    <div>
+    <div className="bg-neutral-700">
       <TittleHeader title={getCategoryTitle(id)}></TittleHeader>
-      <div className=" border-b ">
-        <div className="flex container justify-center mx-auto gap-5">
+      <div className=" border-b border-neutral-600 ">
+        <div className="flex container justify-center mx-auto gap-5 text-white">
           <NavLink to="/category/1">
-            <Button className="px-4 py-2">Toyota</Button>
+            <Button className="px-4 py-2" sx={{ color: "white" }}>
+              Toyota
+            </Button>
           </NavLink>
           <NavLink to="/category/2">
-            <Button className="px-4 py-2">Honda</Button>
+            <Button className="px-4 py-2" sx={{ color: "white" }}>
+              Honda
+            </Button>
           </NavLink>
           <NavLink to="/category/3">
-            <Button className="px-4 py-2">Hyundai</Button>
+            <Button className="px-4 py-2" sx={{ color: "white" }}>
+              Hyundai
+            </Button>
           </NavLink>
           <NavLink to="/category/4">
-            <Button className="px-4 py-2">Nissan</Button>
+            <Button className="px-4 py-2" sx={{ color: "white" }}>
+              Nissan
+            </Button>
           </NavLink>
         </div>
       </div>
@@ -73,7 +81,7 @@ const CategorProduct = () => {
           <h2>No Products available for this category</h2>
         </div>
       )}
-      <div className="pt-5 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-12 lg:gap-y-0 px-8 lg:px-0 container mx-auto my-5">
+      <div className="pt-5 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 gap-y-12 lg:gap-y-0 px-8 lg:px-0 container mx-auto border-b border-neutral-600 ">
         {response.map((product) => (
           <AdvertiseCard key={product._id} product={product}></AdvertiseCard>
         ))}

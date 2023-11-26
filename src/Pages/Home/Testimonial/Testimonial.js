@@ -22,7 +22,7 @@ const Testimonial = () => {
           onEnter={() => setCounterOn(true)}
           onExit={() => setCounterOn(false)}
         >
-          <div className="hidden lg:flex absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded justify-center items-center clip_path gap-5">
+          <div className="hidden lg:flex absolute bg-neutral-900 text-white h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded justify-center items-center clip_path gap-5">
             <div className="flex gap-3 items-center">
               <div className="bg-blue-600 bg-opacity-10 p-5 rounded-full">
                 <BsSuitHeart className="inline  text-2xl    text-blue-600"></BsSuitHeart>
@@ -58,7 +58,7 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-          <div className="absolute bg-neutral-200 h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded lg:hidden clip_path flex  items-center pl-10 lg:pl-0 justify-center ">
+          <div className="absolute bg-neutral-900 text-white h-[140px] -top-20 bottom-0  w-2/3 right-0  shadow-xl rounded lg:hidden clip_path flex  items-center pl-10 lg:pl-0 justify-center ">
             <Swiper
               slidesPerView={1}
               // spaceBetween={30}
@@ -147,7 +147,7 @@ const Testimonial = () => {
               className="testimonial-swiper"
             >
               <SwiperSlide className="bg-transparent">
-                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-200">
+                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-700 text-white">
                   <div className="flex justify-between">
                     <h3 className="text-xl font-bold ">Amazing Support!</h3>
                     <span className="bg-amber-400 bg-opacity-20 rounded px-3 py-1 inline-flex justify-center items-center gap-1 font-bold">
@@ -177,14 +177,14 @@ const Testimonial = () => {
                       <img
                         src="https://i.ibb.co/gvj4jvD/quote-revised.png"
                         alt=""
-                        className="h-[60px] opacity-20"
+                        className="h-[60px] "
                       />
                     </div>
                   </div>
                 </div>
               </SwiperSlide>
               <SwiperSlide className="bg-transparent">
-                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-200">
+                <div className="h-full mx-7 px-10 py-6 hover:cursor-pointer bg-neutral-700 text-white">
                   <div className="flex justify-between">
                     <h3 className="text-xl font-bold ">Great Service</h3>
                     <span className="bg-amber-400 bg-opacity-20 rounded px-3 py-1 inline-flex justify-center items-center gap-1 font-bold">
@@ -216,7 +216,7 @@ const Testimonial = () => {
                       <img
                         src="https://i.ibb.co/gvj4jvD/quote-revised.png"
                         alt=""
-                        className="h-[60px] opacity-20"
+                        className="h-[60px] "
                       />
                     </div>
                   </div>

@@ -1,20 +1,10 @@
-import { Footer } from "flowbite-react";
-import logo from "../../../Assets/Logo.svg";
 import React from "react";
-import "react-photo-view/dist/react-photo-view.css";
-import {
-  BsFacebook,
-  BsInstagram,
-  BsLinkedin,
-  BsPhone,
-  BsTelephoneInbound,
-  BsTwitter,
-} from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { PhotoProvider, PhotoView } from "react-photo-view";
-import { LocalActivity } from "@mui/icons-material";
+import { BsPhone } from "react-icons/bs";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { MdOutlineEmail } from "react-icons/md";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+import logo from "../../../Assets/logo-white.svg";
 const FooterMain = () => {
   const images = [
     "https://i.ibb.co/D1024Zx/pexels-gustavo-fring-4895421.jpg",
@@ -30,7 +20,7 @@ const FooterMain = () => {
         <div className="flex px-5 lg:px-0 flex-col lg:flex-row gap-5 lg:gap-12 justify-between container mx-auto pb-6">
           <div className="w-full lg:w-1/4">
             <img className="h-6 md:h-9" src={logo} alt="" />
-            <span class="self-center text-xl lg:text-3xl font-semibold whitespace-nowrap dark:text-white text-[#4366B0]">
+            <span class="self-center text-xl lg:text-3xl font-semibold whitespace-nowrap dark:text-white ">
               MotoHub
             </span>
             <p className="text-white pt-2">

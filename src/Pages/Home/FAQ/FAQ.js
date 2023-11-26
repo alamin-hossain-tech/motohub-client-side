@@ -23,13 +23,19 @@ const FAQ = () => {
           Frequently Ask Question
         </h2>
         <div className=" px-5 lg:px-0 w-full lg:w-2/3 mx-auto pt-12">
-          <Accordion className="bg-black">
+          <Accordion
+            sx={{
+              backgroundColor: "rgba(64,64,64,1)",
+              color: "white",
+              ".MuiAccordionSummary-expandIconWrapper": { color: "white" },
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography className="py-2">
+              <Typography className="py-2 ">
                 {" "}
                 Can I See the Inspection Certification?
               </Typography>
@@ -47,7 +53,13 @@ const FAQ = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion
+            sx={{
+              backgroundColor: "rgba(64,64,64,1)",
+              color: "white",
+              ".MuiAccordionSummary-expandIconWrapper": { color: "white" },
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -70,7 +82,13 @@ const FAQ = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion
+            sx={{
+              backgroundColor: "rgba(64,64,64,1)",
+              color: "white",
+              ".MuiAccordionSummary-expandIconWrapper": { color: "white" },
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -94,7 +112,13 @@ const FAQ = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion
+            sx={{
+              backgroundColor: "rgba(64,64,64,1)",
+              color: "white",
+              ".MuiAccordionSummary-expandIconWrapper": { color: "white" },
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -115,7 +139,13 @@ const FAQ = () => {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion
+            sx={{
+              backgroundColor: "rgba(64,64,64,1)",
+              color: "white",
+              ".MuiAccordionSummary-expandIconWrapper": { color: "white" },
+            }}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"

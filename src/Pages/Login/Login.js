@@ -88,25 +88,30 @@ const Login = () => {
   };
   SetTabTitle("Login");
   return (
-    <div>
+    <div className="bg-neutral-600 text-white">
       <TittleHeader title={"Login"}></TittleHeader>
       <div className="container mx-auto py-12">
-        <div className="w-1/2 mx-auto">
+        <div className="w-1/3 bg-neutral-700 p-5 rounded-md mx-auto">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* register your input into the hook by invoking the "register" function */}
             <div className="mb-2 block">
-              <Label htmlFor="email1" value="Your email" />
+              <Label htmlFor="email1" color={"white"} value="Your email" />
             </div>
             <TextInput
+              className="mb-4"
               id="email1"
               type="email"
-              placeholder="name@flowbite.com"
+              placeholder="example@email.com"
               required={true}
               {...register("email")}
             />
             <div>
               <div className="mb-2 block">
-                <Label htmlFor="password1" value="Your password" />
+                <Label
+                  htmlFor="password1"
+                  color={"white"}
+                  value="Your password"
+                />
               </div>
               <TextInput
                 id="password1"
@@ -118,7 +123,7 @@ const Login = () => {
 
             {/* {errors.exampleRequired && <span>This field is required</span>} */}
             <div className="flex items-center gap-2 py-4">
-              <Label htmlFor="agree">
+              <Label htmlFor="agree" color={"white"}>
                 New to this site ? Please{" "}
                 <Link to="/register" className="text-blue-700">
                   Register
@@ -129,7 +134,11 @@ const Login = () => {
             <Button type="submit">Login</Button>
           </form>
           <div className="py-12">
-            <Divider>OR</Divider>
+            <Divider
+              sx={{ "::after,::before": { borderColor: "rgba(84,84,84,1)" } }}
+            >
+              OR
+            </Divider>
           </div>
 
           <Button onClick={handleGoogleLogin} className="mx-auto">
